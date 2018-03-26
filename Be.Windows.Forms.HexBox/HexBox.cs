@@ -1656,6 +1656,27 @@ namespace Be.Windows.Forms
 				PerformScrollThumpPosition(line);
 			}
 		}
+
+		public void ScrollByteToTop(long index)
+		{
+			System.Diagnostics.Debug.WriteLine("ScrollByteToTop(long index)", "HexBox");
+
+			if (_byteProvider == null || _keyInterpreter == null)
+				return;
+
+			if (index < _startByte)
+			{
+				long line = (long)Math.Floor((double)index / (double)_iHexMaxHBytes);
+				PerformScrollThumpPosition(line);
+			}
+			else if (index > _endByte)
+			{
+				long line = (long)Math.Floor((double)index / (double)_iHexMaxHBytes);
+				//line -= _iHexMaxVBytes - 1;
+				PerformScrollThumpPosition(line);
+			}
+		}
+
 		#endregion
 
 		#region Selection methods

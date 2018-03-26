@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.Design;
+using System.Windows.Forms;
+using System;
 namespace GD77_FlashManager
 {
 	partial class MainForm
@@ -146,7 +148,9 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.hexBox);
 			this.Name = "MainForm";
 			this.Text = "GD-77 Flash manager";
-			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Load +=	new	EventHandler(this.Form1_Load);
+			this.KeyPreview = true;
+			this.KeyDown += new KeyEventHandler(this.MainForm_KeyDown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -148,5 +148,17 @@ namespace GD77_FlashManager
 		{
 			
 		}
+
+		private void MainForm_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Modifiers == Keys.Control && e.KeyCode == Keys.G)
+			{
+				GotoAddressForm gaf = new GotoAddressForm();
+				if (gaf.ShowDialog() == DialogResult.OK)
+				{
+					hexBox.ScrollByteToTop(gaf.Address);
+				}
+			}
+		}
 	}
 }
