@@ -49,6 +49,12 @@
     <Compile Include="CommPrgForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FindForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindForm.Designer.cs">
+      <DependentUpon>FindForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FirmwareUpdate.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     <Compile Include="UsbLib\Win32Usb.cs" />
     <EmbeddedResource Include="CommPrgForm.resx">
       <DependentUpon>CommPrgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindForm.resx">
+      <DependentUpon>FindForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GotoAddressForm.resx">
       <DependentUpon>GotoAddressForm.cs</DependentUpon>

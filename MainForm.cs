@@ -20,6 +20,7 @@ namespace GD77_FlashManager
 		public static int transferLength;
 		private FixedByteProvider _dbp;
 		private bool _hexboxHasChanged = false;
+		FindOptions	_findOptions; 
 		
 
 		public MainForm()
@@ -163,14 +164,43 @@ namespace GD77_FlashManager
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Modifiers == Keys.Control && e.KeyCode == Keys.G)
-			{
-				GotoAddressForm gaf = new GotoAddressForm();
-				if (gaf.ShowDialog() == DialogResult.OK)
+				switch (e.KeyCode)
 				{
-					hexBox.ScrollByteToTop(gaf.Address);
+					case Keys.G:
+						if (e.Modifiers  == Keys.Control)
+						{
+						GotoAddressForm gaf = new GotoAddressForm();
+							if (gaf.ShowDialog() == DialogResult.OK)
+							{
+								hexBox.ScrollByteToTop(gaf.Address);
+							}
+						}
+						break;
+					case Keys.F:
+						if (e.Modifiers  == Keys.Control)
+						{
+							_findOptions = new FindOptions();
+							FindForm findForm = new FindForm(_findOptions);
+							if (findForm.ShowDialog() == DialogResult.OK)
+							{
+								if (-1 == hexBox.Find(_findOptions))
+								{
+									MessageBox.Show("Pattern not found");
+								}
+							}
+						}
+						break;
+					case Keys.F3:
+						if (_findOptions != null)
+						{
+							if (-1 == hexBox.Find(_findOptions))
+							{
+								MessageBox.Show("Pattern not found");
+							}
+						}
+						break;
 				}
-			}
+
 		}
 	}
 }
