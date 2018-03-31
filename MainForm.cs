@@ -146,7 +146,19 @@ namespace GD77_FlashManager
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			
+			if (DialogResult.Yes != MessageBox.Show("This software is provided 'as is'. You use it at your own risk.\n\nMaking changes to the flash memory in the Radioddity GD-77 or any other compatibile radio, using this tool, could potentially damage your radio.\n\nBy clicking 'Yes' you acknoledge that you use this software entirely at your own risk", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2))
+			{
+				if (System.Windows.Forms.Application.MessageLoop)
+				{
+					// Use this since we are a WinForms app
+					System.Windows.Forms.Application.Exit();
+				}
+				else
+				{
+					// Use this since we are a console app
+					System.Environment.Exit(1);
+				}
+			}
 		}
 
 		private void MainForm_KeyDown(object sender, KeyEventArgs e)
