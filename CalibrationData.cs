@@ -62,7 +62,7 @@ namespace GD77_FlashManager
 
 		/*
 		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
-		 * UHF 405Mhz - 475Mhz (in 5Mhz steps)
+		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] TXIandQ;
@@ -71,7 +71,7 @@ namespace GD77_FlashManager
 
 		/*
 		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
-		 * UHF 405Mhz - 475Mhz (in 5Mhz steps)
+		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] VHFDeviationControl;// 136Mhz , 140Mhz - 165Mhz, 172Mhz . Bits 0-4 conbined deviation, bit 5 CTCSS?DCS deviation, bits 6:7 DCS only deviation
