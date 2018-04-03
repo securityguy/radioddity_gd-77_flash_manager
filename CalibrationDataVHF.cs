@@ -3,39 +3,44 @@ using System.Runtime.InteropServices;
 
 namespace GD77_FlashManager
 {
+	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	class CalibrationDataVHF
 	{
 		// Changing any of them reduced the Tx power to virtually nothing
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock1 = { 0x50, 0x05, 0xCC, 0x06, 0x50, 0x05, 0xCC, 0x06 };
+		public byte[] UnknownBlock1;// Uknown. Changing any of these values causes Tx power to drop to virtuially zero
 
-		public UInt16 DACOscRefTune = 0x03E8;// 	DAC word for frequency reference oscillator
+		public UInt16 DACOscRefTune;// 	DAC word for frequency reference oscillator
 
-		public byte Unknown9 = 0xE9;// VHF data has 0xEE in this value
+		public byte UnknownBlock2; // Unkown byte E9 on UHF EE on VHF
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] // Array of 8 pairs of bytes (Low and High power settings)
-		public PowerSettingData[] PowerSettings;// 136Mhz, then 140MHz -  165Mhz in steps of 5Mhz, then 172Mhz
-
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
-		public byte[] UnknownBlock2;// All these contain 0xFF so are probably not used. 
+		/* Power settings
+		 * UHF 400 to 475 in 5Mhz stps (16 steps)
+		 * VHF 136Mhz, then 140MHz -  165Mhz in steps of 5Mhz, then 172Mhz  (8 steps - upper 8 array entries contain 0xff )
+		 */
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)] 
+		public PowerSettingData[] PowerSettings;// 
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock3 = { 0x40, 0xF0, 0x40, 0xF0, 0x40, 0xF0 };// Possibly 4 uint16 words
+		public byte[] UnknownBlock3;// Unkown
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-		public byte[] UnknownBlock4;// All these contain 0xFF so are probably not used. 
+		/*
+		 * Digital mic gain ( possibly MBE Equalisation )
+		 * Note. 
+		 * UHF appears to have 8 bytes of data, 
+		 * VHF only seems to use the first 6 bytes as the last 2 contain 0xff which is totally different from the values in the first 6 bytes
+		 */
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] 
+		public byte[] MicGainDigital;// Note 
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 6)] // Digital mic gain ( possibly MBE Equalisation )
-		public byte[] MicGainDigital = { 0x0F, 0x0F, 0x0F, 0x1B, 0x1B, 0x1B };
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+		public byte[] UnknownBlock4;// Seems to contain 0x00 on both VHF and UHF. Potentially unused
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-		public byte[] UnknownBlock5;// All these contain 0xFF so are probably not used. 
-
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 12)]
-		public byte[] UnknownBlock6 = { 0x00, 0x00, 0x00, 0x00, 0x1D, 0x1D, 0x1D, 0x1C, 0x1C, 0x1C, 0x1B, 0x1B };
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+		public byte[] UnknownBlock5;// Different values on VHF and UHF byt all in the range 0x12 - 0x1D
 
 
-		// = {0x3E, 0x3C, 0x3D, 0x3A, 0x53, 0x51, 0x34, 0x32, 0x34, 0x32, 0x53, 0x51 };
+
 		public byte MuteStrictWidebandClose1;
 		public byte MuteStrictWidebandOpen1;
 		public byte MuteStrictWidebandClose2;
@@ -55,11 +60,19 @@ namespace GD77_FlashManager
 		public byte RSSILowerThreshold;
 		public byte RSSIUpperThreshold;
 
+		/*
+		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
+		 * UHF 405Mhz - 475Mhz (in 5Mhz steps)
+		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] TXIandQ;// 136Mhz , 140Mhz - 165Mhz, 172Mhz 
+		public byte[] TXIandQ;
 
-		public byte UnknownBlock7;
+		public byte UnknownBlock6;// 0x1D on VHF and UHF
 
+		/*
+		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
+		 * UHF 405Mhz - 475Mhz (in 5Mhz steps)
+		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] VHFDeviationControl;// 136Mhz , 140Mhz - 165Mhz, 172Mhz . Bits 0-4 conbined deviation, bit 5 CTCSS?DCS deviation, bits 6:7 DCS only deviation
 
@@ -67,6 +80,6 @@ namespace GD77_FlashManager
 		public byte ReceiveAGCGainTarget; // Receiver AGC target. Higher values give more gain. Reducing this may improve receiver overload with strong signals, but would reduce sensitivity
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock8 = { 0x27, 0x00, 0x27, 0x00, 0x0F, 0x0F, 0x00, 0x00 };
+		public byte[] UnknownBlock7;
 	}
 }
