@@ -54,19 +54,45 @@ namespace GD77_FlashManager
 			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
 			byte[] array = new byte[calibrationDataSize];
 			Array.Copy(MainForm.eeprom, 0x8F000, array, 0, calibrationDataSize);
-			_vhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
+			_uhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
 			
 			array = new byte[calibrationDataSize];
 			Array.Copy(MainForm.eeprom, 0x8F070, array, 0, calibrationDataSize);
-			_uhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
+			_vhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
 
-			this.txtVHFOscRef.Text = _vhfData.DACOscRefTune.ToString();
+//VHF Values
+			this.nudVhfOscRef.Value= _vhfData.DACOscRefTune;
+			
+			this.nudVhfSquelchWideNormOpen.Value = _vhfData.MuteNormalWidebandOpen1;
+			this.nudVhfSquelchWideNormClose.Value = _vhfData.MuteNormalWidebandClose1;
+			this.nudVhfSquelchWideTightOpen.Value = _vhfData.MuteStrictWidebandOpen1;
+			this.nudVhfSquelchWideTightClose.Value = _vhfData.MuteStrictWidebandClose1;
+			this.nudVhfSquelchNarrowNormOpen.Value = _vhfData.MuteNormalNarrowbandOpen1;
+			this.nudVhfSquelchNarrowNormClose.Value = _vhfData.MuteNormalNarrowbandClose1;
+			this.nudVhfSquelchNarrowTightOpen.Value = _vhfData.MuteStrictNarrowbandOpen1;
+			this.nudVhfSquelchNarrowTightClose.Value = _vhfData.MuteStrictNarrowbandClose1;
+
+
+
+//UHF Values
+			this.nudUhfOscRef.Value = _uhfData.DACOscRefTune;
+
+			this.nudUhfSquelchWideNormOpen.Value = _uhfData.MuteNormalWidebandOpen1;
+			this.nudUhfSquelchWideNormClose.Value = _uhfData.MuteNormalWidebandClose1;
+			this.nudUhfSquelchWideTightOpen.Value = _uhfData.MuteStrictWidebandOpen1;
+			this.nudUhfSquelchWideTightClose.Value = _uhfData.MuteStrictWidebandClose1;
+			this.nudUhfSquelchNarrowNormOpen.Value = _uhfData.MuteNormalNarrowbandOpen1;
+			this.nudUhfSquelchNarrowNormClose.Value = _uhfData.MuteNormalNarrowbandClose1;
+			this.nudUhfSquelchNarrowTightOpen.Value = _uhfData.MuteStrictNarrowbandOpen1;
+			this.nudUhfSquelchNarrowTightClose.Value = _uhfData.MuteStrictNarrowbandClose1;
+
 
 			Console.Write("Done");
 		}
 
+		private void label10_Click(object sender, EventArgs e)
+		{
 
-
-
+		}
 	}
 }
