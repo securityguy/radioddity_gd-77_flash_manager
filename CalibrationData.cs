@@ -74,7 +74,7 @@ namespace GD77_FlashManager
 		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] VHFDeviationControl;// 136Mhz , 140Mhz - 165Mhz, 172Mhz . Bits 0-4 conbined deviation, bit 5 CTCSS?DCS deviation, bits 6:7 DCS only deviation
+		public byte[] DeviationControl;// 136Mhz , 140Mhz - 165Mhz, 172Mhz . Bits 0-4 conbined deviation, bit 5 CTCSS?DCS deviation, bits 6:7 DCS only deviation
 
 		public byte MicGainAnalog;// Both wide and narrow band
 		public byte ReceiveAGCGainTarget; // Receiver AGC target. Higher values give more gain. Reducing this may improve receiver overload with strong signals, but would reduce sensitivity
