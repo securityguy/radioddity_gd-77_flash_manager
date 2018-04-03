@@ -18,8 +18,10 @@ namespace GD77_FlashManager
 		 * UHF 400 to 475 in 5Mhz stps (16 steps)
 		 * VHF 136Mhz, then 140MHz -  165Mhz in steps of 5Mhz, then 172Mhz  (8 steps - upper 8 array entries contain 0xff )
 		 */
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)] 
-		public PowerSettingData[] PowerSettings;// 
+		//[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)] 
+		//public PowerSettingData[] PowerSettings;// 
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)] 
+		public byte[] PowerSettings;// 
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] UnknownBlock3;// Unkown
@@ -81,5 +83,21 @@ namespace GD77_FlashManager
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] UnknownBlock7;
+
+		public CalibrationData()
+		{
+
+
+			this.UnknownBlock1 = new byte[8];
+			this.PowerSettings = new byte[32];
+			this.UnknownBlock3 = new byte[8];
+			this.MicGainDigital = new byte[8];
+			this.UnknownBlock4 = new byte[4];
+			this.UnknownBlock5 = new byte[8];
+			this.TXIandQ = new byte[8];
+			this.DeviationControl = new byte[8];
+			this.UnknownBlock7 = new byte[8];
+		}
+
 	}
 }

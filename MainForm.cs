@@ -134,6 +134,11 @@ namespace GD77_FlashManager
 				File.WriteAllBytes(saveFileDialog1.FileName, MainForm.eeprom);
 			}
 		}
+		private void btnCalibration_Click(object sender, EventArgs e)
+		{
+			CalibrationForm cf = new CalibrationForm();
+			cf.ShowDialog();
+		}
 
 		private void copyHexboxToEeprom()
 		{

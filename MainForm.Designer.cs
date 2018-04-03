@@ -40,6 +40,7 @@ namespace GD77_FlashManager
 			this.label2 = new System.Windows.Forms.Label();
 			this.btnRead = new System.Windows.Forms.Button();
 			this.btnWrite = new System.Windows.Forms.Button();
+			this.btnCalibration = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// hexBox
@@ -132,6 +133,16 @@ namespace GD77_FlashManager
 			this.btnWrite.UseVisualStyleBackColor = true;
 			this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
 			// 
+			// btnCalibration
+			// 
+			this.btnCalibration.Location = new System.Drawing.Point(21, 598);
+			this.btnCalibration.Name = "btnCalibration";
+			this.btnCalibration.Size = new System.Drawing.Size(75, 23);
+			this.btnCalibration.TabIndex = 0;
+			this.btnCalibration.Text = "Calibration";
+			this.btnCalibration.UseVisualStyleBackColor = true;
+			this.btnCalibration.Click += new System.EventHandler(this.btnCalibration_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -141,16 +152,17 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.txtStartAddr);
 			this.Controls.Add(this.label1);
+			this.Controls.Add(this.btnCalibration);
 			this.Controls.Add(this.btnWrite);
 			this.Controls.Add(this.btnRead);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnOpen);
 			this.Controls.Add(this.hexBox);
+			this.KeyPreview = true;
 			this.Name = "MainForm";
 			this.Text = "GD-77 Flash manager";
-			this.Load +=	new	EventHandler(this.Form1_Load);
-			this.KeyPreview = true;
-			this.KeyDown += new KeyEventHandler(this.MainForm_KeyDown);
+			this.Load += new System.EventHandler(this.Form1_Load);
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -168,6 +180,7 @@ namespace GD77_FlashManager
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnRead;
 		private System.Windows.Forms.Button btnWrite;
+		private Button btnCalibration;
 
 	}
 }
