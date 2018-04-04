@@ -21,6 +21,8 @@ namespace GD77_FlashManager
 		private FixedByteProvider _dbp;
 		private bool _hexboxHasChanged = false;
 		FindOptions	_findOptions; 
+        public static String AppName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+        public static String FileName = "";
 		
 		public MainForm()
 		{
@@ -137,6 +139,8 @@ namespace GD77_FlashManager
 				try
 				{
 					MainForm.eeprom = File.ReadAllBytes(openFileDialog1.FileName);
+					MainForm.FileName = openFileDialog1.FileName;
+					MainForm.ActiveForm.Text = AppName + " - Current File: " + FileName;
 					hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
 					_hexboxHasChanged = false;
 				}

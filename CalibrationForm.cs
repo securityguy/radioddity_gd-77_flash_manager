@@ -71,7 +71,10 @@ namespace GD77_FlashManager
 
 		private void onFormLoad(object sender, EventArgs e)
 		{
-			
+			if ("" != MainForm.FileName)
+			{
+				this.Text = "Calibration: " + MainForm.FileName;
+			}
 		}
 	}
 }
