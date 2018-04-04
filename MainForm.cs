@@ -22,7 +22,6 @@ namespace GD77_FlashManager
 		private bool _hexboxHasChanged = false;
 		FindOptions	_findOptions; 
 		
-
 		public MainForm()
 		{
 			InitializeComponent();
@@ -67,8 +66,35 @@ namespace GD77_FlashManager
 			}
 			commPrgForm.ShowDialog();
 			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ScrollByteToTop(MainForm.startAddress);
 			_hexboxHasChanged = false;
 		}
+
+		private void btnReadCalibration_Click(object sender, EventArgs e)
+		{
+			CommPrgForm commPrgForm = new CommPrgForm();
+			commPrgForm.StartPosition = FormStartPosition.CenterParent;
+			commPrgForm.IsRead = true;
+			MainForm.startAddress = 0x80000;
+			MainForm.transferLength = 0x10000;
+			commPrgForm.ShowDialog();
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ScrollByteToTop(0x8F000);
+			_hexboxHasChanged = false;
+		}
+
+		private void btnWriteCalibration_Click(object sender, EventArgs e)
+		{
+			hexBox.ScrollByteToTop(0x8F000);
+			CommPrgForm commPrgForm = new CommPrgForm();
+			commPrgForm.StartPosition = FormStartPosition.CenterParent;
+			commPrgForm.IsRead = false;
+			MainForm.startAddress = 0x80000;
+			MainForm.transferLength = 0x10000;
+			copyHexboxToEeprom();
+			commPrgForm.ShowDialog();
+		}
+
 
 		private void btnWrite_Click(object sender, EventArgs e)
 		{
@@ -139,6 +165,7 @@ namespace GD77_FlashManager
 			CalibrationForm cf = new CalibrationForm();
 			cf.ShowDialog();
 			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ScrollByteToTop(0x8F000);
 		}
 
 		private void copyHexboxToEeprom()

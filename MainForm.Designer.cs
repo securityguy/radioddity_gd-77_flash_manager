@@ -41,6 +41,8 @@ namespace GD77_FlashManager
 			this.btnRead = new System.Windows.Forms.Button();
 			this.btnWrite = new System.Windows.Forms.Button();
 			this.btnCalibration = new System.Windows.Forms.Button();
+			this.btnReadCalibration = new System.Windows.Forms.Button();
+			this.btnWriteCalibration = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// hexBox
@@ -92,7 +94,7 @@ namespace GD77_FlashManager
 			this.txtStartAddr.Name = "txtStartAddr";
 			this.txtStartAddr.Size = new System.Drawing.Size(75, 20);
 			this.txtStartAddr.TabIndex = 3;
-			this.txtStartAddr.Text = "0";
+			this.txtStartAddr.Text = "80000";
 			this.txtStartAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// txtLen
@@ -101,7 +103,7 @@ namespace GD77_FlashManager
 			this.txtLen.Name = "txtLen";
 			this.txtLen.Size = new System.Drawing.Size(75, 20);
 			this.txtLen.TabIndex = 5;
-			this.txtLen.Text = "20";
+			this.txtLen.Text = "10000";
 			this.txtLen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// label2
@@ -135,13 +137,33 @@ namespace GD77_FlashManager
 			// 
 			// btnCalibration
 			// 
-			this.btnCalibration.Location = new System.Drawing.Point(21, 598);
+			this.btnCalibration.Location = new System.Drawing.Point(21, 528);
 			this.btnCalibration.Name = "btnCalibration";
-			this.btnCalibration.Size = new System.Drawing.Size(75, 23);
+			this.btnCalibration.Size = new System.Drawing.Size(75, 44);
 			this.btnCalibration.TabIndex = 0;
-			this.btnCalibration.Text = "Calibration";
+			this.btnCalibration.Text = "Adjust Calibration";
 			this.btnCalibration.UseVisualStyleBackColor = true;
 			this.btnCalibration.Click += new System.EventHandler(this.btnCalibration_Click);
+			// 
+			// btnReadCalibration
+			// 
+			this.btnReadCalibration.Location = new System.Drawing.Point(21, 482);
+			this.btnReadCalibration.Name = "btnReadCalibration";
+			this.btnReadCalibration.Size = new System.Drawing.Size(75, 40);
+			this.btnReadCalibration.TabIndex = 0;
+			this.btnReadCalibration.Text = "Read Calibration";
+			this.btnReadCalibration.UseVisualStyleBackColor = true;
+			this.btnReadCalibration.Click += new System.EventHandler(this.btnReadCalibration_Click);
+			// 
+			// btnWriteCalibration
+			// 
+			this.btnWriteCalibration.Location = new System.Drawing.Point(21, 578);
+			this.btnWriteCalibration.Name = "btnWriteCalibration";
+			this.btnWriteCalibration.Size = new System.Drawing.Size(75, 40);
+			this.btnWriteCalibration.TabIndex = 0;
+			this.btnWriteCalibration.Text = "Write Calibration";
+			this.btnWriteCalibration.UseVisualStyleBackColor = true;
+			this.btnWriteCalibration.Click += new System.EventHandler(this.btnWriteCalibration_Click);
 			// 
 			// MainForm
 			// 
@@ -154,6 +176,8 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.btnCalibration);
 			this.Controls.Add(this.btnWrite);
+			this.Controls.Add(this.btnWriteCalibration);
+			this.Controls.Add(this.btnReadCalibration);
 			this.Controls.Add(this.btnRead);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnOpen);
@@ -181,6 +205,8 @@ namespace GD77_FlashManager
 		private System.Windows.Forms.Button btnRead;
 		private System.Windows.Forms.Button btnWrite;
 		private Button btnCalibration;
+		private Button btnReadCalibration;
+		private Button btnWriteCalibration;
 
 	}
 }
