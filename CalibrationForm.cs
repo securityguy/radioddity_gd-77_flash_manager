@@ -20,7 +20,19 @@ namespace GD77_FlashManager
 
 		public CalibrationForm()
 		{
+			// Need to setup the VHF and UHF data storage class first, as its used when initialising the components
+			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
+			byte[] array = new byte[calibrationDataSize];
+			Array.Copy(MainForm.eeprom, 0x8F000, array, 0, calibrationDataSize);
+			_uhfData = (CalibrationData)ByteToData(array);
+
+			array = new byte[calibrationDataSize];
+			Array.Copy(MainForm.eeprom, 0x8F070, array, 0, calibrationDataSize);
+			_vhfData = (CalibrationData)ByteToData(array);
+
 			InitializeComponent();
+			this.calibrationBandControlVHF.data = this._vhfData;
+			this.calibrationBandControlUHF.data = this._uhfData;
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
@@ -34,16 +46,12 @@ namespace GD77_FlashManager
 			Close();
 		}
 
-		private CalibrationData ByteToData(byte[] byte_0, Type type_0)
+		private CalibrationData ByteToData(byte[] byte_0)
 		{
-			int num = Marshal.SizeOf(type_0);
-			if (num > byte_0.Length)
-			{
-				throw new ArgumentException();
-			}
+			int num = Marshal.SizeOf(typeof(CalibrationData));
 			IntPtr intPtr = Marshal.AllocHGlobal(num);
 			Marshal.Copy(byte_0, 0, intPtr, num);
-			object result = Marshal.PtrToStructure(intPtr, type_0);
+			object result = Marshal.PtrToStructure(intPtr, typeof(CalibrationData));
 			Marshal.FreeHGlobal(intPtr);
 			return (CalibrationData)result;
 		}
@@ -51,48 +59,6 @@ namespace GD77_FlashManager
 		private void onFormLoad(object sender, EventArgs e)
 		{
 			
-			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
-			byte[] array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.eeprom, 0x8F000, array, 0, calibrationDataSize);
-			_uhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
-			
-			array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.eeprom, 0x8F070, array, 0, calibrationDataSize);
-			_vhfData = (CalibrationData)ByteToData(array, typeof(CalibrationData));
-
-//VHF Values
-			this.nudVhfOscRef.Value= _vhfData.DACOscRefTune;
-			
-			this.nudVhfSquelchWideNormOpen.Value = _vhfData.MuteNormalWidebandOpen1;
-			this.nudVhfSquelchWideNormClose.Value = _vhfData.MuteNormalWidebandClose1;
-			this.nudVhfSquelchWideTightOpen.Value = _vhfData.MuteStrictWidebandOpen1;
-			this.nudVhfSquelchWideTightClose.Value = _vhfData.MuteStrictWidebandClose1;
-			this.nudVhfSquelchNarrowNormOpen.Value = _vhfData.MuteNormalNarrowbandOpen1;
-			this.nudVhfSquelchNarrowNormClose.Value = _vhfData.MuteNormalNarrowbandClose1;
-			this.nudVhfSquelchNarrowTightOpen.Value = _vhfData.MuteStrictNarrowbandOpen1;
-			this.nudVhfSquelchNarrowTightClose.Value = _vhfData.MuteStrictNarrowbandClose1;
-
-
-
-//UHF Values
-			this.nudUhfOscRef.Value = _uhfData.DACOscRefTune;
-
-			this.nudUhfSquelchWideNormOpen.Value = _uhfData.MuteNormalWidebandOpen1;
-			this.nudUhfSquelchWideNormClose.Value = _uhfData.MuteNormalWidebandClose1;
-			this.nudUhfSquelchWideTightOpen.Value = _uhfData.MuteStrictWidebandOpen1;
-			this.nudUhfSquelchWideTightClose.Value = _uhfData.MuteStrictWidebandClose1;
-			this.nudUhfSquelchNarrowNormOpen.Value = _uhfData.MuteNormalNarrowbandOpen1;
-			this.nudUhfSquelchNarrowNormClose.Value = _uhfData.MuteNormalNarrowbandClose1;
-			this.nudUhfSquelchNarrowTightOpen.Value = _uhfData.MuteStrictNarrowbandOpen1;
-			this.nudUhfSquelchNarrowTightClose.Value = _uhfData.MuteStrictNarrowbandClose1;
-
-
-			Console.Write("Done");
-		}
-
-		private void label10_Click(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

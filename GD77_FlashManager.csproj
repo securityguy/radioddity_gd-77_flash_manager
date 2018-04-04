@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalibrationBandControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationBandControl.Designer.cs">
+      <DependentUpon>CalibrationBandControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalibrationData.cs" />
     <Compile Include="CalibrationForm.cs">
       <SubType>Form</SubType>
@@ -99,6 +105,9 @@
     <Compile Include="UsbLib\SpecifiedInputReport.cs" />
     <Compile Include="UsbLib\SpecifiedOutputReport.cs" />
     <Compile Include="UsbLib\Win32Usb.cs" />
+    <EmbeddedResource Include="CalibrationBandControl.resx">
+      <DependentUpon>CalibrationBandControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CalibrationForm.resx">
       <DependentUpon>CalibrationForm.cs</DependentUpon>
     </EmbeddedResource>

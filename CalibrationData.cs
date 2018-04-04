@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace GD77_FlashManager
 {
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	class CalibrationData
+	public class CalibrationData
 	{
 		// Changing any of them reduced the Tx power to virtually nothing
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
