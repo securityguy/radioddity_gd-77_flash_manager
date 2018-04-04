@@ -58,6 +58,18 @@
     <Compile Include="CalibrationForm.Designer.cs">
       <DependentUpon>CalibrationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalibrationNUDLabelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationNUDLabelControl.Designer.cs">
+      <DependentUpon>CalibrationNUDLabelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationPowerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationPowerControl.Designer.cs">
+      <DependentUpon>CalibrationPowerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CodeplugComms.cs" />
     <Compile Include="CommPrgForm.cs">
       <SubType>Form</SubType>
@@ -110,6 +122,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CalibrationForm.resx">
       <DependentUpon>CalibrationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalibrationNUDLabelControl.resx">
+      <DependentUpon>CalibrationNUDLabelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalibrationPowerControl.resx">
+      <DependentUpon>CalibrationPowerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommPrgForm.resx">
       <DependentUpon>CommPrgForm.cs</DependentUpon>

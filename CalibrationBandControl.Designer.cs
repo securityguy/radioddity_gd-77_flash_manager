@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.grpSquelch = new System.Windows.Forms.GroupBox();
 			this.nudSquelchNarrowTightClose = new System.Windows.Forms.NumericUpDown();
 			this.nudSquelchWideTightClose = new System.Windows.Forms.NumericUpDown();
 			this.nudSquelchNarrowTightOpen = new System.Windows.Forms.NumericUpDown();
@@ -49,7 +49,9 @@
 			this.nudReceiveAGCTarget = new System.Windows.Forms.NumericUpDown();
 			this.lblAnalogMicGain = new System.Windows.Forms.Label();
 			this.nudAnalogMicGain = new System.Windows.Forms.NumericUpDown();
-			this.groupBox1.SuspendLayout();
+			this.calibrationPowerControlLow = new GD77_FlashManager.CalibrationPowerControl();
+			this.calibrationPowerControlHigh = new GD77_FlashManager.CalibrationPowerControl();
+			this.grpSquelch.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightOpen)).BeginInit();
@@ -63,28 +65,28 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// groupBox1
+			// grpSquelch
 			// 
-			this.groupBox1.Controls.Add(this.nudSquelchNarrowTightClose);
-			this.groupBox1.Controls.Add(this.nudSquelchWideTightClose);
-			this.groupBox1.Controls.Add(this.nudSquelchNarrowTightOpen);
-			this.groupBox1.Controls.Add(this.nudSquelchWideTightOpen);
-			this.groupBox1.Controls.Add(this.label3);
-			this.groupBox1.Controls.Add(this.label4);
-			this.groupBox1.Controls.Add(this.nudSquelchNarrowNormClose);
-			this.groupBox1.Controls.Add(this.nudSquelchWideNormClose);
-			this.groupBox1.Controls.Add(this.nudSquelchNarrowNormOpen);
-			this.groupBox1.Controls.Add(this.nudSquelchWideNormOpen);
-			this.groupBox1.Controls.Add(this.label5);
-			this.groupBox1.Controls.Add(this.label6);
-			this.groupBox1.Controls.Add(this.label13);
-			this.groupBox1.Controls.Add(this.label14);
-			this.groupBox1.Location = new System.Drawing.Point(17, 49);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new System.Drawing.Size(197, 144);
-			this.groupBox1.TabIndex = 8;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Squelch";
+			this.grpSquelch.Controls.Add(this.nudSquelchNarrowTightClose);
+			this.grpSquelch.Controls.Add(this.nudSquelchWideTightClose);
+			this.grpSquelch.Controls.Add(this.nudSquelchNarrowTightOpen);
+			this.grpSquelch.Controls.Add(this.nudSquelchWideTightOpen);
+			this.grpSquelch.Controls.Add(this.label3);
+			this.grpSquelch.Controls.Add(this.label4);
+			this.grpSquelch.Controls.Add(this.nudSquelchNarrowNormClose);
+			this.grpSquelch.Controls.Add(this.nudSquelchWideNormClose);
+			this.grpSquelch.Controls.Add(this.nudSquelchNarrowNormOpen);
+			this.grpSquelch.Controls.Add(this.nudSquelchWideNormOpen);
+			this.grpSquelch.Controls.Add(this.label5);
+			this.grpSquelch.Controls.Add(this.label6);
+			this.grpSquelch.Controls.Add(this.label13);
+			this.grpSquelch.Controls.Add(this.label14);
+			this.grpSquelch.Location = new System.Drawing.Point(7, 285);
+			this.grpSquelch.Name = "grpSquelch";
+			this.grpSquelch.Size = new System.Drawing.Size(197, 144);
+			this.grpSquelch.TabIndex = 8;
+			this.grpSquelch.TabStop = false;
+			this.grpSquelch.Text = "Squelch";
 			// 
 			// nudSquelchNarrowTightClose
 			// 
@@ -238,7 +240,7 @@
 			// 
 			// nudVhfOscRef
 			// 
-			this.nudVhfOscRef.Location = new System.Drawing.Point(153, 23);
+			this.nudVhfOscRef.Location = new System.Drawing.Point(349, 301);
 			this.nudVhfOscRef.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -251,7 +253,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(14, 23);
+			this.label1.Location = new System.Drawing.Point(210, 301);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(133, 13);
 			this.label1.TabIndex = 6;
@@ -260,7 +262,7 @@
 			// lblAGCTarget
 			// 
 			this.lblAGCTarget.AutoSize = true;
-			this.lblAGCTarget.Location = new System.Drawing.Point(12, 215);
+			this.lblAGCTarget.Location = new System.Drawing.Point(229, 333);
 			this.lblAGCTarget.Name = "lblAGCTarget";
 			this.lblAGCTarget.Size = new System.Drawing.Size(102, 13);
 			this.lblAGCTarget.TabIndex = 6;
@@ -268,7 +270,7 @@
 			// 
 			// nudReceiveAGCTarget
 			// 
-			this.nudReceiveAGCTarget.Location = new System.Drawing.Point(131, 213);
+			this.nudReceiveAGCTarget.Location = new System.Drawing.Point(348, 331);
 			this.nudReceiveAGCTarget.Maximum = new decimal(new int[] {
             255,
             0,
@@ -281,7 +283,7 @@
 			// lblAnalogMicGain
 			// 
 			this.lblAnalogMicGain.AutoSize = true;
-			this.lblAnalogMicGain.Location = new System.Drawing.Point(12, 241);
+			this.lblAnalogMicGain.Location = new System.Drawing.Point(229, 363);
 			this.lblAnalogMicGain.Name = "lblAnalogMicGain";
 			this.lblAnalogMicGain.Size = new System.Drawing.Size(82, 13);
 			this.lblAnalogMicGain.TabIndex = 6;
@@ -289,7 +291,7 @@
 			// 
 			// nudAnalogMicGain
 			// 
-			this.nudAnalogMicGain.Location = new System.Drawing.Point(131, 239);
+			this.nudAnalogMicGain.Location = new System.Drawing.Point(348, 361);
 			this.nudAnalogMicGain.Maximum = new decimal(new int[] {
             255,
             0,
@@ -299,11 +301,27 @@
 			this.nudAnalogMicGain.Size = new System.Drawing.Size(63, 20);
 			this.nudAnalogMicGain.TabIndex = 7;
 			// 
+			// calibrationPowerControlLow
+			// 
+			this.calibrationPowerControlLow.Location = new System.Drawing.Point(7, 139);
+			this.calibrationPowerControlLow.Name = "calibrationPowerControlLow";
+			this.calibrationPowerControlLow.Size = new System.Drawing.Size(523, 140);
+			this.calibrationPowerControlLow.TabIndex = 9;
+			// 
+			// calibrationPowerControlHigh
+			// 
+			this.calibrationPowerControlHigh.Location = new System.Drawing.Point(7, 5);
+			this.calibrationPowerControlHigh.Name = "calibrationPowerControlHigh";
+			this.calibrationPowerControlHigh.Size = new System.Drawing.Size(523, 140);
+			this.calibrationPowerControlHigh.TabIndex = 9;
+			// 
 			// CalibrationBandControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.calibrationPowerControlLow);
+			this.Controls.Add(this.calibrationPowerControlHigh);
+			this.Controls.Add(this.grpSquelch);
 			this.Controls.Add(this.nudAnalogMicGain);
 			this.Controls.Add(this.lblAnalogMicGain);
 			this.Controls.Add(this.nudReceiveAGCTarget);
@@ -311,9 +329,9 @@
 			this.Controls.Add(this.nudVhfOscRef);
 			this.Controls.Add(this.label1);
 			this.Name = "CalibrationBandControl";
-			this.Size = new System.Drawing.Size(482, 352);
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
+			this.Size = new System.Drawing.Size(535, 438);
+			this.grpSquelch.ResumeLayout(false);
+			this.grpSquelch.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightOpen)).EndInit();
@@ -332,7 +350,7 @@
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox groupBox1;
+		private System.Windows.Forms.GroupBox grpSquelch;
 		private System.Windows.Forms.NumericUpDown nudSquelchNarrowTightClose;
 		private System.Windows.Forms.NumericUpDown nudSquelchWideTightClose;
 		private System.Windows.Forms.NumericUpDown nudSquelchNarrowTightOpen;
@@ -353,5 +371,7 @@
 		private System.Windows.Forms.NumericUpDown nudReceiveAGCTarget;
 		private System.Windows.Forms.Label lblAnalogMicGain;
 		private System.Windows.Forms.NumericUpDown nudAnalogMicGain;
+		private CalibrationPowerControl calibrationPowerControlHigh;
+		private CalibrationPowerControl calibrationPowerControlLow;
 	}
 }
