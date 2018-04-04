@@ -138,6 +138,7 @@ namespace GD77_FlashManager
 		{
 			CalibrationForm cf = new CalibrationForm();
 			cf.ShowDialog();
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
 		}
 
 		private void copyHexboxToEeprom()
