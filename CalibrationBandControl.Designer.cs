@@ -45,6 +45,10 @@
 			this.label14 = new System.Windows.Forms.Label();
 			this.nudVhfOscRef = new System.Windows.Forms.NumericUpDown();
 			this.label1 = new System.Windows.Forms.Label();
+			this.lblAGCTarget = new System.Windows.Forms.Label();
+			this.nudReceiveAGCTarget = new System.Windows.Forms.NumericUpDown();
+			this.lblAnalogMicGain = new System.Windows.Forms.Label();
+			this.nudAnalogMicGain = new System.Windows.Forms.NumericUpDown();
 			this.groupBox1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).BeginInit();
@@ -55,6 +59,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowNormOpen)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideNormOpen)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudVhfOscRef)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudReceiveAGCTarget)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// groupBox1
@@ -232,7 +238,7 @@
 			// 
 			// nudVhfOscRef
 			// 
-			this.nudVhfOscRef.Location = new System.Drawing.Point(153, 13);
+			this.nudVhfOscRef.Location = new System.Drawing.Point(153, 23);
 			this.nudVhfOscRef.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -245,17 +251,63 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(14, 13);
+			this.label1.Location = new System.Drawing.Point(14, 23);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(133, 13);
 			this.label1.TabIndex = 6;
 			this.label1.Text = "Reference oscillator tuning\t";
+			// 
+			// lblAGCTarget
+			// 
+			this.lblAGCTarget.AutoSize = true;
+			this.lblAGCTarget.Location = new System.Drawing.Point(12, 215);
+			this.lblAGCTarget.Name = "lblAGCTarget";
+			this.lblAGCTarget.Size = new System.Drawing.Size(102, 13);
+			this.lblAGCTarget.TabIndex = 6;
+			this.lblAGCTarget.Text = "Receive AGC target\t";
+			// 
+			// nudReceiveAGCTarget
+			// 
+			this.nudReceiveAGCTarget.Location = new System.Drawing.Point(131, 213);
+			this.nudReceiveAGCTarget.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.nudReceiveAGCTarget.Name = "nudReceiveAGCTarget";
+			this.nudReceiveAGCTarget.Size = new System.Drawing.Size(63, 20);
+			this.nudReceiveAGCTarget.TabIndex = 7;
+			// 
+			// lblAnalogMicGain
+			// 
+			this.lblAnalogMicGain.AutoSize = true;
+			this.lblAnalogMicGain.Location = new System.Drawing.Point(12, 241);
+			this.lblAnalogMicGain.Name = "lblAnalogMicGain";
+			this.lblAnalogMicGain.Size = new System.Drawing.Size(82, 13);
+			this.lblAnalogMicGain.TabIndex = 6;
+			this.lblAnalogMicGain.Text = "Analog mic gain\t";
+			// 
+			// nudAnalogMicGain
+			// 
+			this.nudAnalogMicGain.Location = new System.Drawing.Point(131, 239);
+			this.nudAnalogMicGain.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.nudAnalogMicGain.Name = "nudAnalogMicGain";
+			this.nudAnalogMicGain.Size = new System.Drawing.Size(63, 20);
+			this.nudAnalogMicGain.TabIndex = 7;
 			// 
 			// CalibrationBandControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.groupBox1);
+			this.Controls.Add(this.nudAnalogMicGain);
+			this.Controls.Add(this.lblAnalogMicGain);
+			this.Controls.Add(this.nudReceiveAGCTarget);
+			this.Controls.Add(this.lblAGCTarget);
 			this.Controls.Add(this.nudVhfOscRef);
 			this.Controls.Add(this.label1);
 			this.Name = "CalibrationBandControl";
@@ -271,6 +323,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowNormOpen)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideNormOpen)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudVhfOscRef)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudReceiveAGCTarget)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -295,5 +349,9 @@
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.NumericUpDown nudVhfOscRef;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblAGCTarget;
+		private System.Windows.Forms.NumericUpDown nudReceiveAGCTarget;
+		private System.Windows.Forms.Label lblAnalogMicGain;
+		private System.Windows.Forms.NumericUpDown nudAnalogMicGain;
 	}
 }
