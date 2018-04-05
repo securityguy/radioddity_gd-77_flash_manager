@@ -14,10 +14,59 @@ namespace GD77_FlashManager
 	{
 
 		private CalibrationData _calibrationData;
+		private string _type="";
 
 		public CalibrationBandControl()
 		{
 			InitializeComponent();
+		}
+
+		public string Type
+		{
+			get
+			{
+				return _type;
+			}
+			set
+			{
+				_type = value;
+				switch(_type)
+				{
+					case "VHF":
+						{
+							calibrationPowerControlHigh.Cols = 8;
+							calibrationPowerControlLow.Cols = 8;
+							string[] freqBandNames = { "136","140","145","150","155","160","165","172"};
+							NameAndValue[] lowPower = new NameAndValue[freqBandNames.Length];
+							NameAndValue[] highPower = new NameAndValue[freqBandNames.Length];
+							for (int i = 0; i < freqBandNames.Length; i++)
+							{
+								lowPower[i] = new NameAndValue(freqBandNames[i],0);// _calibrationData.PowerSettings[i].lowPower);
+								highPower[i] = new NameAndValue(freqBandNames[i],0);// _calibrationData.PowerSettings[i].lowPower);
+							}
+
+							calibrationPowerControlLow.ListData = lowPower;
+							calibrationPowerControlHigh.ListData = highPower;
+						}
+						break;
+					case "UHF":
+						{
+							calibrationPowerControlHigh.Cols = 16;
+							calibrationPowerControlLow.Cols = 16;
+							string[] freqBandNames = { "400", "405", "410", "415", "420", "425", "430", "435", "440", "445", "450", "455", "460", "465", "470", "475" };
+							NameAndValue[] lowPower = new NameAndValue[freqBandNames.Length];
+							NameAndValue[] highPower = new NameAndValue[freqBandNames.Length];
+							for (int i = 0; i < freqBandNames.Length; i++)
+							{
+								lowPower[i] = new NameAndValue(freqBandNames[i],0); //_calibrationData.PowerSettings[i].lowPower);
+								highPower[i] = new NameAndValue(freqBandNames[i], 0);//_calibrationData.PowerSettings[i].lowPower);
+							}
+							calibrationPowerControlLow.ListData = lowPower;
+							calibrationPowerControlHigh.ListData = highPower;
+						}
+						break;
+				}
+			}
 		}
 
 		public CalibrationData data
@@ -52,6 +101,21 @@ namespace GD77_FlashManager
 				this.nudSquelchNarrowTightClose.Value	= _calibrationData.MuteStrictNarrowbandClose1;
 				this.nudReceiveAGCTarget.Value			= _calibrationData.ReceiveAGCGainTarget;
 				this.nudAnalogMicGain.Value				= _calibrationData.MicGainAnalog;
+				{
+					int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
+					int[] lowPower = new int[numItems];
+					int[] highPower = new int[numItems];
+					for (int i = 0; i < numItems; i++)
+					{
+						lowPower[i] = _calibrationData.PowerSettings[i].lowPower;
+						highPower[i] = _calibrationData.PowerSettings[i].highPower;
+					}
+
+					calibrationPowerControlLow.Values = lowPower;
+					calibrationPowerControlHigh.Values = highPower;
+				}
+			
+
 			}
 		}
 	}

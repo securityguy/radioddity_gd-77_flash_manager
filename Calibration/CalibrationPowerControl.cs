@@ -12,41 +12,144 @@ namespace GD77_FlashManager
 {
 	public partial class CalibrationPowerControl : UserControl
 	{
-		private CalibrationNUDLabelControl[] _powerBandControls = new CalibrationNUDLabelControl[16];
-		/*
-		public CalibrationNUDLabelControl [] data
+		private List<CalibrationNUDLabelControl> _controlsList = new List<CalibrationNUDLabelControl>();
+		private int _rows = 1;
+		private int _cols = 1;
+
+		public NameAndValue[] ListData
 		{
-			set
+			get 
 			{
-				for (int i = 0; i < 16; i++)
+				NameAndValue[] d = new NameAndValue[_controlsList.Count];
+				for(int i=0;i<_controlsList.Count;i++)
 				{
-					_powerBandControls[i] = value[i];
+					d[i] = new NameAndValue(_controlsList[i].bandName, _controlsList[i].bandValue);
+				}
+				return d;
+			}
+			set 
+			{
+				if (value.Length <= _rows * _cols)
+				{
+					for (int i = 0; i < value.Length; i++)
+					{
+						_controlsList[i].bandName = value[i].Name;
+						_controlsList[i].bandValue = (byte)value[i].Value;
+					}
+				}
+				else
+				{
+					//throw(new Exception("Data length does not match rows * columns"));
 				}
 			}
+		}
+
+		public int[] Values
+		{
 			get
 			{
-				return _powerBandControls;
+				int [] d = new int[_controlsList.Count];
+				for (int i = 0; i < _controlsList.Count; i++)
+				{
+					d[i] = _controlsList[i].bandValue;
+				}
+				return d;
 			}
-		}*/
+			set
+			{
+				if (value.Length <= _rows * _cols)
+				{
+					for (int i = 0; i < value.Length; i++)
+					{
+						_controlsList[i].bandValue = (byte)value[i];
+					}
+				}
+				else
+				{
+					//throw(new Exception("Data length does not match rows * columns"));
+				}
+			}
+		}
+
+
+		public int Rows
+		{
+			get 
+			{
+				return _rows;
+			}
+			set
+			{
+				_rows = value;
+				updateComponents();
+			}
+		}
+
+		public int Cols
+		{
+			get
+			{
+				return _cols;
+			}
+			set
+			{
+				_cols = value;
+				updateComponents();
+			}
+		}
+		public string GroupText
+		{
+			get
+			{
+				return this.groupBox1.Text;
+			}
+			set
+			{
+				this.groupBox1.Text = value;
+			}
+		}
+
 		public CalibrationPowerControl()
 		{
+
 			InitializeComponent();
-			_powerBandControls[0] = calibrationNUDLabelControl1;
-			_powerBandControls[1] = calibrationNUDLabelControl2;
-			_powerBandControls[2] = calibrationNUDLabelControl3;
-			_powerBandControls[3] = calibrationNUDLabelControl4;
-			_powerBandControls[4] = calibrationNUDLabelControl5;
-			_powerBandControls[5] = calibrationNUDLabelControl6;
-			_powerBandControls[6] = calibrationNUDLabelControl7;
-			_powerBandControls[7] = calibrationNUDLabelControl8;
-			_powerBandControls[8] = calibrationNUDLabelControl9;
-			_powerBandControls[9] = calibrationNUDLabelControl10;
-			_powerBandControls[10] = calibrationNUDLabelControl11;
-			_powerBandControls[11] = calibrationNUDLabelControl12;
-			_powerBandControls[12] = calibrationNUDLabelControl13;
-			_powerBandControls[13] = calibrationNUDLabelControl14;
-			_powerBandControls[14] = calibrationNUDLabelControl15;
-			_powerBandControls[15] = calibrationNUDLabelControl16;
+			updateComponents();
+
 		}
+
+		private void updateComponents()
+		{
+			if (_controlsList.Count != 0)
+			{
+				for (int i = 0; i < _controlsList.Count; i++)
+				{
+					this.groupBox1.Controls.Remove(_controlsList[i]);
+				}
+				_controlsList.Clear();
+			}
+			CalibrationNUDLabelControl ctl = null;// assign to null to stop the compiler complaining
+			int xPos = groupBox1.Left + 10;
+			int yPos = groupBox1.Top  + 15;
+			for (int r = 0; r < _rows; r++)
+			{
+				xPos = 5;
+				for (int c = 0; c < _cols; c++)
+				{
+					ctl = new GD77_FlashManager.CalibrationNUDLabelControl();
+					ctl.bandName = "label_" + r + "_" + c;
+					ctl.bandValue = ((byte)(0));
+					ctl.Location = new System.Drawing.Point(xPos, yPos);
+					ctl.Name = "calibrationNUDLabelControl1";
+					xPos += ctl.Width;
+					ctl.TabIndex = r;
+					_controlsList.Add(ctl);
+					this.groupBox1.Controls.Add(ctl);
+				}
+				yPos += ctl.Height;
+			}
+			groupBox1.Width = xPos+10;
+			groupBox1.Height = yPos+15;
+		}
+
 	}
 }

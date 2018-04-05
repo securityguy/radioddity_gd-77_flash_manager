@@ -15,7 +15,10 @@ namespace GD77_FlashManager
 		public string bandName
 		{
 			get { return label1.Text; }
-			set { label1.Text = value; }
+			set
+			{ 
+				label1.Text = value; 
+			}
 		}
 		public byte bandValue
 		{

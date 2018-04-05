@@ -92,6 +92,8 @@
     <Compile Include="GotoAddressForm.Designer.cs">
       <DependentUpon>GotoAddressForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyValuePair.cs" />
+    <Compile Include="NameAndValue.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
