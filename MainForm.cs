@@ -27,6 +27,11 @@ namespace GD77_FlashManager
 		public MainForm()
 		{
 			InitializeComponent();
+			// Hide calibration from normal users
+			this.btnReadCalibration.Visible = false;
+			this.btnWriteCalibration.Visible = false;
+			this.btnCalibration.Visible = false;
+
 			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
 			
 			_dbp.Changed += new EventHandler(onDataProviderChanged);// No point doing something every time this changes, as it only alerts to the fact that something has changed and not what specific byte has changed
@@ -236,8 +241,18 @@ namespace GD77_FlashManager
 							}
 						}
 						break;
+					case Keys.F12:
+						if (e.Modifiers == Keys.Alt)
+						{
+							if (DialogResult.OK == MessageBox.Show("The Calibration feature is still in development.\nNot all paramaters have been tested\nYou use this feature at your own risk.", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2))
+							{
+								this.btnReadCalibration.Visible = true;
+								this.btnWriteCalibration.Visible = true;
+								this.btnCalibration.Visible = true;
+							}
+						}
+						break;
 				}
-
 		}
 	}
 }

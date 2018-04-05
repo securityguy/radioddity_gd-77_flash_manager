@@ -30,11 +30,19 @@ namespace GD77_FlashManager
 			array = new byte[calibrationDataSize];
 			Array.Copy(MainForm.eeprom, 0x8F070, array, 0, calibrationDataSize);
 			this.calibrationBandControlVHF.data  = (CalibrationData)ByteToData(array);
+
 		}
 
 		private void btnSave_Click(object sender, EventArgs e)
 		{
 			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
+			Console.WriteLine(BitConverter.ToString(this.calibrationBandControlVHF.data.UnknownBlock1).Replace("-", ""));
+			if ("A00FC012A00FC012" != BitConverter.ToString(this.calibrationBandControlUHF.data.UnknownBlock1).Replace("-", "") ||
+				"5005CC065005CC06" != BitConverter.ToString(this.calibrationBandControlVHF.data.UnknownBlock1).Replace("-", ""))
+			{
+				MessageBox.Show("The UHF signature block is not set to 0xA00FC012A00FC012\nOr the VHF signature is not set to 05005CC065005CC06\nUse the hex editor to fix this problem.","Data Error!");
+			}
+
 			byte[] array = DataToByte(this.calibrationBandControlUHF.data);
 			Array.Copy(array, 0, MainForm.eeprom, 0x8F000, calibrationDataSize);
 
