@@ -49,11 +49,16 @@
 			this.nudReceiveAGCTarget = new System.Windows.Forms.NumericUpDown();
 			this.lblAnalogMicGain = new System.Windows.Forms.Label();
 			this.nudAnalogMicGain = new System.Windows.Forms.NumericUpDown();
+			this.calibrationTXIandQ = new GD77_FlashManager.CalibrationPowerControl();
+			this.calibrationDeviationControl = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationDigitalMicGain = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationPowerControlLow = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationPowerControlHigh = new GD77_FlashManager.CalibrationPowerControl();
-			this.calibrationTXIandQ = new GD77_FlashManager.CalibrationPowerControl();
-			this.calibrationDeviationControl = new GD77_FlashManager.CalibrationPowerControl();
+			this.grpSMeter = new System.Windows.Forms.GroupBox();
+			this.label2 = new System.Windows.Forms.Label();
+			this.label7 = new System.Windows.Forms.Label();
+			this.nudSMeterLow = new System.Windows.Forms.NumericUpDown();
+			this.nudSMeterHigh = new System.Windows.Forms.NumericUpDown();
 			this.grpSquelch.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).BeginInit();
@@ -66,6 +71,9 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudVhfOscRef)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudReceiveAGCTarget)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).BeginInit();
+			this.grpSMeter.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterHigh)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpSquelch
@@ -304,6 +312,62 @@
 			this.nudAnalogMicGain.Size = new System.Drawing.Size(63, 20);
 			this.nudAnalogMicGain.TabIndex = 7;
 			// 
+			// calibrationTXIandQ
+			// 
+			this.calibrationTXIandQ.Cols = 8;
+			this.calibrationTXIandQ.GroupText = "TX I & Q";
+			this.calibrationTXIandQ.Location = new System.Drawing.Point(440, 181);
+			this.calibrationTXIandQ.Name = "calibrationTXIandQ";
+			this.calibrationTXIandQ.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7"};
+			this.calibrationTXIandQ.Rows = 1;
+			this.calibrationTXIandQ.Size = new System.Drawing.Size(447, 98);
+			this.calibrationTXIandQ.TabIndex = 9;
+			this.calibrationTXIandQ.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
+			// 
+			// calibrationDeviationControl
+			// 
+			this.calibrationDeviationControl.Cols = 8;
+			this.calibrationDeviationControl.GroupText = "Deviation control";
+			this.calibrationDeviationControl.Location = new System.Drawing.Point(7, 272);
+			this.calibrationDeviationControl.Name = "calibrationDeviationControl";
+			this.calibrationDeviationControl.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7"};
+			this.calibrationDeviationControl.Rows = 1;
+			this.calibrationDeviationControl.Size = new System.Drawing.Size(447, 98);
+			this.calibrationDeviationControl.TabIndex = 9;
+			this.calibrationDeviationControl.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
+			// 
 			// calibrationDigitalMicGain
 			// 
 			this.calibrationDigitalMicGain.Cols = 8;
@@ -420,66 +484,66 @@
         0,
         0};
 			// 
-			// calibrationTXIandQ
+			// grpSMeter
 			// 
-			this.calibrationTXIandQ.Cols = 8;
-			this.calibrationTXIandQ.GroupText = "TX I & Q";
-			this.calibrationTXIandQ.Location = new System.Drawing.Point(440, 181);
-			this.calibrationTXIandQ.Name = "calibrationTXIandQ";
-			this.calibrationTXIandQ.Names = new string[] {
-        "label_0_0",
-        "label_0_1",
-        "label_0_2",
-        "label_0_3",
-        "label_0_4",
-        "label_0_5",
-        "label_0_6",
-        "label_0_7"};
-			this.calibrationTXIandQ.Rows = 1;
-			this.calibrationTXIandQ.Size = new System.Drawing.Size(447, 98);
-			this.calibrationTXIandQ.TabIndex = 9;
-			this.calibrationTXIandQ.Values = new int[] {
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0};
+			this.grpSMeter.Controls.Add(this.nudSMeterHigh);
+			this.grpSMeter.Controls.Add(this.nudSMeterLow);
+			this.grpSMeter.Controls.Add(this.label7);
+			this.grpSMeter.Controls.Add(this.label2);
+			this.grpSMeter.Location = new System.Drawing.Point(440, 394);
+			this.grpSMeter.Name = "grpSMeter";
+			this.grpSMeter.Size = new System.Drawing.Size(117, 87);
+			this.grpSMeter.TabIndex = 10;
+			this.grpSMeter.TabStop = false;
+			this.grpSMeter.Text = "S Meter";
 			// 
-			// calibrationDeviationControl
+			// label2
 			// 
-			this.calibrationDeviationControl.Cols = 8;
-			this.calibrationDeviationControl.GroupText = "Deviation control";
-			this.calibrationDeviationControl.Location = new System.Drawing.Point(7, 272);
-			this.calibrationDeviationControl.Name = "calibrationDeviationControl";
-			this.calibrationDeviationControl.Names = new string[] {
-        "label_0_0",
-        "label_0_1",
-        "label_0_2",
-        "label_0_3",
-        "label_0_4",
-        "label_0_5",
-        "label_0_6",
-        "label_0_7"};
-			this.calibrationDeviationControl.Rows = 1;
-			this.calibrationDeviationControl.Size = new System.Drawing.Size(447, 98);
-			this.calibrationDeviationControl.TabIndex = 9;
-			this.calibrationDeviationControl.Values = new int[] {
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0};
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 58);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(51, 13);
+			this.label2.TabIndex = 7;
+			this.label2.Text = "High End\t";
+			// 
+			// label7
+			// 
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 30);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(49, 13);
+			this.label7.TabIndex = 8;
+			this.label7.Text = "Low End\t";
+			// 
+			// nudSMeterLow
+			// 
+			this.nudSMeterLow.Location = new System.Drawing.Point(61, 28);
+			this.nudSMeterLow.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.nudSMeterLow.Name = "nudSMeterLow";
+			this.nudSMeterLow.Size = new System.Drawing.Size(41, 20);
+			this.nudSMeterLow.TabIndex = 15;
+			// 
+			// nudSMeterHigh
+			// 
+			this.nudSMeterHigh.Location = new System.Drawing.Point(61, 56);
+			this.nudSMeterHigh.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.nudSMeterHigh.Name = "nudSMeterHigh";
+			this.nudSMeterHigh.Size = new System.Drawing.Size(41, 20);
+			this.nudSMeterHigh.TabIndex = 16;
 			// 
 			// CalibrationBandControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.grpSMeter);
 			this.Controls.Add(this.calibrationTXIandQ);
 			this.Controls.Add(this.calibrationDeviationControl);
 			this.Controls.Add(this.calibrationDigitalMicGain);
@@ -507,6 +571,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudVhfOscRef)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudReceiveAGCTarget)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).EndInit();
+			this.grpSMeter.ResumeLayout(false);
+			this.grpSMeter.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterHigh)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -540,5 +608,10 @@
 		private CalibrationPowerControl calibrationDigitalMicGain;
 		private CalibrationPowerControl calibrationTXIandQ;
 		private CalibrationPowerControl calibrationDeviationControl;
+		private System.Windows.Forms.GroupBox grpSMeter;
+		private System.Windows.Forms.NumericUpDown nudSMeterHigh;
+		private System.Windows.Forms.NumericUpDown nudSMeterLow;
+		private System.Windows.Forms.Label label7;
+		private System.Windows.Forms.Label label2;
 	}
 }

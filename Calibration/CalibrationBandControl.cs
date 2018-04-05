@@ -74,6 +74,14 @@ namespace GD77_FlashManager
 				_calibrationData.MuteStrictNarrowbandClose1 = (byte)this.nudSquelchNarrowTightClose.Value;
 				_calibrationData.ReceiveAGCGainTarget		= (byte)this.nudReceiveAGCTarget.Value;
 				_calibrationData.MicGainAnalog				= (byte)this.nudAnalogMicGain.Value;
+				_calibrationData.RSSILowerThreshold			= (byte)this.nudSMeterLow.Value;
+				_calibrationData.RSSIUpperThreshold			= (byte)this.nudSMeterHigh.Value;
+
+				_calibrationData.MuteStrictWidebandOpen2 = _calibrationData.MuteStrictWidebandOpen1;
+				_calibrationData.MuteStrictWidebandClose2 = _calibrationData.MuteStrictWidebandClose1;
+				_calibrationData.MuteStrictNarrowbandOpen2 = _calibrationData.MuteStrictNarrowbandOpen1;
+				_calibrationData.MuteStrictNarrowbandClose2 = _calibrationData.MuteStrictNarrowbandClose1;
+
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
@@ -122,6 +130,8 @@ namespace GD77_FlashManager
 				this.nudSquelchNarrowTightClose.Value	= _calibrationData.MuteStrictNarrowbandClose1;
 				this.nudReceiveAGCTarget.Value			= _calibrationData.ReceiveAGCGainTarget;
 				this.nudAnalogMicGain.Value				= _calibrationData.MicGainAnalog;
+				this.nudSMeterLow.Value					= _calibrationData.RSSILowerThreshold;
+				this.nudSMeterHigh.Value				= _calibrationData.RSSIUpperThreshold;
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
@@ -154,11 +164,11 @@ namespace GD77_FlashManager
 				calibrationTXIandQ.Values = txIAndQ;
 
 				// Deviation control
-				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				numItems = calibrationDeviationControl.Rows * calibrationDeviationControl.Cols;
 				int[] deviationControl = new int[numItems];
 				for (int i = 0; i < numItems; i++)
 				{
-					deviationControl[i] = _calibrationData.TXIandQ[i];
+					deviationControl[i] = _calibrationData.DeviationControl[i];
 				}
 				this.calibrationDeviationControl.Values = deviationControl;
 
