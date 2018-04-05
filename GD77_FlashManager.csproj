@@ -64,11 +64,11 @@
     <Compile Include="Calibration\CalibrationNUDLabelControl.Designer.cs">
       <DependentUpon>CalibrationNUDLabelControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calibration\CalibrationPowerControl.cs">
+    <Compile Include="Calibration\MultiNUDControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Calibration\CalibrationPowerControl.Designer.cs">
-      <DependentUpon>CalibrationPowerControl.cs</DependentUpon>
+    <Compile Include="Calibration\MultiNUDControl.Designer.cs">
+      <DependentUpon>MultiNUDControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CodeplugComms.cs" />
     <Compile Include="CommPrgForm.cs">
@@ -128,8 +128,8 @@
     <EmbeddedResource Include="Calibration\CalibrationNUDLabelControl.resx">
       <DependentUpon>CalibrationNUDLabelControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Calibration\CalibrationPowerControl.resx">
-      <DependentUpon>CalibrationPowerControl.cs</DependentUpon>
+    <EmbeddedResource Include="Calibration\MultiNUDControl.resx">
+      <DependentUpon>MultiNUDControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommPrgForm.resx">
       <DependentUpon>CommPrgForm.cs</DependentUpon>
