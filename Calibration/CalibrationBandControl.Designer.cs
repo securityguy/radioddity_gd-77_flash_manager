@@ -28,38 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			GD77_FlashManager.NameAndValue nameAndValue1 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue2 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue3 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue4 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue5 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue6 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue7 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue8 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue9 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue10 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue11 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue12 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue13 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue14 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue15 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue16 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue17 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue18 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue19 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue20 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue21 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue22 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue23 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue24 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue25 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue26 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue27 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue28 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue29 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue30 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue31 = new GD77_FlashManager.NameAndValue();
-			GD77_FlashManager.NameAndValue nameAndValue32 = new GD77_FlashManager.NameAndValue();
 			this.grpSquelch = new System.Windows.Forms.GroupBox();
 			this.nudSquelchNarrowTightClose = new System.Windows.Forms.NumericUpDown();
 			this.nudSquelchWideTightClose = new System.Windows.Forms.NumericUpDown();
@@ -81,8 +49,11 @@
 			this.nudReceiveAGCTarget = new System.Windows.Forms.NumericUpDown();
 			this.lblAnalogMicGain = new System.Windows.Forms.Label();
 			this.nudAnalogMicGain = new System.Windows.Forms.NumericUpDown();
+			this.calibrationDigitalMicGain = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationPowerControlLow = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationPowerControlHigh = new GD77_FlashManager.CalibrationPowerControl();
+			this.calibrationTXIandQ = new GD77_FlashManager.CalibrationPowerControl();
+			this.calibrationDeviationControl = new GD77_FlashManager.CalibrationPowerControl();
 			this.grpSquelch.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).BeginInit();
@@ -113,7 +84,7 @@
 			this.grpSquelch.Controls.Add(this.label6);
 			this.grpSquelch.Controls.Add(this.label13);
 			this.grpSquelch.Controls.Add(this.label14);
-			this.grpSquelch.Location = new System.Drawing.Point(7, 285);
+			this.grpSquelch.Location = new System.Drawing.Point(7, 394);
 			this.grpSquelch.Name = "grpSquelch";
 			this.grpSquelch.Size = new System.Drawing.Size(197, 144);
 			this.grpSquelch.TabIndex = 8;
@@ -272,7 +243,7 @@
 			// 
 			// nudVhfOscRef
 			// 
-			this.nudVhfOscRef.Location = new System.Drawing.Point(349, 301);
+			this.nudVhfOscRef.Location = new System.Drawing.Point(349, 410);
 			this.nudVhfOscRef.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -285,7 +256,7 @@
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(210, 301);
+			this.label1.Location = new System.Drawing.Point(210, 410);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(133, 13);
 			this.label1.TabIndex = 6;
@@ -294,7 +265,7 @@
 			// lblAGCTarget
 			// 
 			this.lblAGCTarget.AutoSize = true;
-			this.lblAGCTarget.Location = new System.Drawing.Point(229, 333);
+			this.lblAGCTarget.Location = new System.Drawing.Point(229, 442);
 			this.lblAGCTarget.Name = "lblAGCTarget";
 			this.lblAGCTarget.Size = new System.Drawing.Size(102, 13);
 			this.lblAGCTarget.TabIndex = 6;
@@ -302,7 +273,7 @@
 			// 
 			// nudReceiveAGCTarget
 			// 
-			this.nudReceiveAGCTarget.Location = new System.Drawing.Point(348, 331);
+			this.nudReceiveAGCTarget.Location = new System.Drawing.Point(348, 440);
 			this.nudReceiveAGCTarget.Maximum = new decimal(new int[] {
             255,
             0,
@@ -315,7 +286,7 @@
 			// lblAnalogMicGain
 			// 
 			this.lblAnalogMicGain.AutoSize = true;
-			this.lblAnalogMicGain.Location = new System.Drawing.Point(229, 363);
+			this.lblAnalogMicGain.Location = new System.Drawing.Point(229, 472);
 			this.lblAnalogMicGain.Name = "lblAnalogMicGain";
 			this.lblAnalogMicGain.Size = new System.Drawing.Size(82, 13);
 			this.lblAnalogMicGain.TabIndex = 6;
@@ -323,7 +294,7 @@
 			// 
 			// nudAnalogMicGain
 			// 
-			this.nudAnalogMicGain.Location = new System.Drawing.Point(348, 361);
+			this.nudAnalogMicGain.Location = new System.Drawing.Point(348, 470);
 			this.nudAnalogMicGain.Maximum = new decimal(new int[] {
             255,
             0,
@@ -333,128 +304,185 @@
 			this.nudAnalogMicGain.Size = new System.Drawing.Size(63, 20);
 			this.nudAnalogMicGain.TabIndex = 7;
 			// 
+			// calibrationDigitalMicGain
+			// 
+			this.calibrationDigitalMicGain.Cols = 8;
+			this.calibrationDigitalMicGain.GroupText = "Digital mic gain";
+			this.calibrationDigitalMicGain.Location = new System.Drawing.Point(7, 181);
+			this.calibrationDigitalMicGain.Name = "calibrationDigitalMicGain";
+			this.calibrationDigitalMicGain.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7"};
+			this.calibrationDigitalMicGain.Rows = 1;
+			this.calibrationDigitalMicGain.Size = new System.Drawing.Size(447, 98);
+			this.calibrationDigitalMicGain.TabIndex = 9;
+			this.calibrationDigitalMicGain.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
+			// 
 			// calibrationPowerControlLow
 			// 
 			this.calibrationPowerControlLow.Cols = 16;
 			this.calibrationPowerControlLow.GroupText = "Low power";
-			nameAndValue1.Name = "label_0_0";
-			nameAndValue1.Value = 0;
-			nameAndValue2.Name = "label_0_1";
-			nameAndValue2.Value = 0;
-			nameAndValue3.Name = "label_0_2";
-			nameAndValue3.Value = 0;
-			nameAndValue4.Name = "label_0_3";
-			nameAndValue4.Value = 0;
-			nameAndValue5.Name = "label_0_4";
-			nameAndValue5.Value = 0;
-			nameAndValue6.Name = "label_0_5";
-			nameAndValue6.Value = 0;
-			nameAndValue7.Name = "label_0_6";
-			nameAndValue7.Value = 0;
-			nameAndValue8.Name = "label_0_7";
-			nameAndValue8.Value = 0;
-			nameAndValue9.Name = "label_0_8";
-			nameAndValue9.Value = 0;
-			nameAndValue10.Name = "label_0_9";
-			nameAndValue10.Value = 0;
-			nameAndValue11.Name = "label_0_10";
-			nameAndValue11.Value = 0;
-			nameAndValue12.Name = "label_0_11";
-			nameAndValue12.Value = 0;
-			nameAndValue13.Name = "label_0_12";
-			nameAndValue13.Value = 0;
-			nameAndValue14.Name = "label_0_13";
-			nameAndValue14.Value = 0;
-			nameAndValue15.Name = "label_0_14";
-			nameAndValue15.Value = 0;
-			nameAndValue16.Name = "label_0_15";
-			nameAndValue16.Value = 0;
-			this.calibrationPowerControlLow.ListData = new GD77_FlashManager.NameAndValue[] {
-        nameAndValue1,
-        nameAndValue2,
-        nameAndValue3,
-        nameAndValue4,
-        nameAndValue5,
-        nameAndValue6,
-        nameAndValue7,
-        nameAndValue8,
-        nameAndValue9,
-        nameAndValue10,
-        nameAndValue11,
-        nameAndValue12,
-        nameAndValue13,
-        nameAndValue14,
-        nameAndValue15,
-        nameAndValue16};
 			this.calibrationPowerControlLow.Location = new System.Drawing.Point(7, 95);
 			this.calibrationPowerControlLow.Name = "calibrationPowerControlLow";
+			this.calibrationPowerControlLow.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7",
+        "label_0_8",
+        "label_0_9",
+        "label_0_10",
+        "label_0_11",
+        "label_0_12",
+        "label_0_13",
+        "label_0_14",
+        "label_0_15"};
 			this.calibrationPowerControlLow.Rows = 1;
 			this.calibrationPowerControlLow.Size = new System.Drawing.Size(838, 98);
 			this.calibrationPowerControlLow.TabIndex = 9;
+			this.calibrationPowerControlLow.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
 			// 
 			// calibrationPowerControlHigh
 			// 
 			this.calibrationPowerControlHigh.Cols = 16;
 			this.calibrationPowerControlHigh.GroupText = "High power";
-			nameAndValue17.Name = "label_0_0";
-			nameAndValue17.Value = 0;
-			nameAndValue18.Name = "label_0_1";
-			nameAndValue18.Value = 0;
-			nameAndValue19.Name = "label_0_2";
-			nameAndValue19.Value = 0;
-			nameAndValue20.Name = "label_0_3";
-			nameAndValue20.Value = 0;
-			nameAndValue21.Name = "label_0_4";
-			nameAndValue21.Value = 0;
-			nameAndValue22.Name = "label_0_5";
-			nameAndValue22.Value = 0;
-			nameAndValue23.Name = "label_0_6";
-			nameAndValue23.Value = 0;
-			nameAndValue24.Name = "label_0_7";
-			nameAndValue24.Value = 0;
-			nameAndValue25.Name = "label_0_8";
-			nameAndValue25.Value = 0;
-			nameAndValue26.Name = "label_0_9";
-			nameAndValue26.Value = 0;
-			nameAndValue27.Name = "label_0_10";
-			nameAndValue27.Value = 0;
-			nameAndValue28.Name = "label_0_11";
-			nameAndValue28.Value = 0;
-			nameAndValue29.Name = "label_0_12";
-			nameAndValue29.Value = 0;
-			nameAndValue30.Name = "label_0_13";
-			nameAndValue30.Value = 0;
-			nameAndValue31.Name = "label_0_14";
-			nameAndValue31.Value = 0;
-			nameAndValue32.Name = "label_0_15";
-			nameAndValue32.Value = 0;
-			this.calibrationPowerControlHigh.ListData = new GD77_FlashManager.NameAndValue[] {
-        nameAndValue17,
-        nameAndValue18,
-        nameAndValue19,
-        nameAndValue20,
-        nameAndValue21,
-        nameAndValue22,
-        nameAndValue23,
-        nameAndValue24,
-        nameAndValue25,
-        nameAndValue26,
-        nameAndValue27,
-        nameAndValue28,
-        nameAndValue29,
-        nameAndValue30,
-        nameAndValue31,
-        nameAndValue32};
 			this.calibrationPowerControlHigh.Location = new System.Drawing.Point(7, 5);
 			this.calibrationPowerControlHigh.Name = "calibrationPowerControlHigh";
+			this.calibrationPowerControlHigh.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7",
+        "label_0_8",
+        "label_0_9",
+        "label_0_10",
+        "label_0_11",
+        "label_0_12",
+        "label_0_13",
+        "label_0_14",
+        "label_0_15"};
 			this.calibrationPowerControlHigh.Rows = 1;
 			this.calibrationPowerControlHigh.Size = new System.Drawing.Size(838, 97);
 			this.calibrationPowerControlHigh.TabIndex = 9;
+			this.calibrationPowerControlHigh.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
+			// 
+			// calibrationTXIandQ
+			// 
+			this.calibrationTXIandQ.Cols = 8;
+			this.calibrationTXIandQ.GroupText = "TX I & Q";
+			this.calibrationTXIandQ.Location = new System.Drawing.Point(440, 181);
+			this.calibrationTXIandQ.Name = "calibrationTXIandQ";
+			this.calibrationTXIandQ.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7"};
+			this.calibrationTXIandQ.Rows = 1;
+			this.calibrationTXIandQ.Size = new System.Drawing.Size(447, 98);
+			this.calibrationTXIandQ.TabIndex = 9;
+			this.calibrationTXIandQ.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
+			// 
+			// calibrationDeviationControl
+			// 
+			this.calibrationDeviationControl.Cols = 8;
+			this.calibrationDeviationControl.GroupText = "Deviation control";
+			this.calibrationDeviationControl.Location = new System.Drawing.Point(7, 272);
+			this.calibrationDeviationControl.Name = "calibrationDeviationControl";
+			this.calibrationDeviationControl.Names = new string[] {
+        "label_0_0",
+        "label_0_1",
+        "label_0_2",
+        "label_0_3",
+        "label_0_4",
+        "label_0_5",
+        "label_0_6",
+        "label_0_7"};
+			this.calibrationDeviationControl.Rows = 1;
+			this.calibrationDeviationControl.Size = new System.Drawing.Size(447, 98);
+			this.calibrationDeviationControl.TabIndex = 9;
+			this.calibrationDeviationControl.Values = new int[] {
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0};
 			// 
 			// CalibrationBandControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.calibrationTXIandQ);
+			this.Controls.Add(this.calibrationDeviationControl);
+			this.Controls.Add(this.calibrationDigitalMicGain);
 			this.Controls.Add(this.calibrationPowerControlLow);
 			this.Controls.Add(this.calibrationPowerControlHigh);
 			this.Controls.Add(this.grpSquelch);
@@ -465,7 +493,7 @@
 			this.Controls.Add(this.nudVhfOscRef);
 			this.Controls.Add(this.label1);
 			this.Name = "CalibrationBandControl";
-			this.Size = new System.Drawing.Size(1096, 438);
+			this.Size = new System.Drawing.Size(890, 551);
 			this.grpSquelch.ResumeLayout(false);
 			this.grpSquelch.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).EndInit();
@@ -509,5 +537,8 @@
 		private System.Windows.Forms.NumericUpDown nudAnalogMicGain;
 		private CalibrationPowerControl calibrationPowerControlHigh;
 		private CalibrationPowerControl calibrationPowerControlLow;
+		private CalibrationPowerControl calibrationDigitalMicGain;
+		private CalibrationPowerControl calibrationTXIandQ;
+		private CalibrationPowerControl calibrationDeviationControl;
 	}
 }

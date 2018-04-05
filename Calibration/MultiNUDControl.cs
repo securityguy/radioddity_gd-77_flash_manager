@@ -16,14 +16,14 @@ namespace GD77_FlashManager
 		private int _rows = 1;
 		private int _cols = 1;
 
-		public NameAndValue[] ListData
+		public string[] Names
 		{
 			get 
 			{
-				NameAndValue[] d = new NameAndValue[_controlsList.Count];
+				string[] d = new string[_controlsList.Count];
 				for(int i=0;i<_controlsList.Count;i++)
 				{
-					d[i] = new NameAndValue(_controlsList[i].bandName, _controlsList[i].bandValue);
+					d[i] = _controlsList[i].bandName;
 				}
 				return d;
 			}
@@ -33,8 +33,7 @@ namespace GD77_FlashManager
 				{
 					for (int i = 0; i < value.Length; i++)
 					{
-						_controlsList[i].bandName = value[i].Name;
-						_controlsList[i].bandValue = (byte)value[i].Value;
+						_controlsList[i].bandName = value[i];
 					}
 				}
 				else
@@ -70,7 +69,6 @@ namespace GD77_FlashManager
 				}
 			}
 		}
-
 
 		public int Rows
 		{

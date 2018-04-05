@@ -30,6 +30,10 @@ namespace GD77_FlashManager
 			set
 			{
 				_type = value;
+				string[] oneToEight = { "1", "2", "3", "4", "5", "6", "7", "8" };
+				this.calibrationDigitalMicGain.Names = oneToEight;
+				this.calibrationTXIandQ.Names = oneToEight;
+				this.calibrationDeviationControl.Names = oneToEight;
 				switch(_type)
 				{
 					case "VHF":
@@ -37,16 +41,9 @@ namespace GD77_FlashManager
 							calibrationPowerControlHigh.Cols = 8;
 							calibrationPowerControlLow.Cols = 8;
 							string[] freqBandNames = { "136","140","145","150","155","160","165","172"};
-							NameAndValue[] lowPower = new NameAndValue[freqBandNames.Length];
-							NameAndValue[] highPower = new NameAndValue[freqBandNames.Length];
-							for (int i = 0; i < freqBandNames.Length; i++)
-							{
-								lowPower[i] = new NameAndValue(freqBandNames[i],0);// _calibrationData.PowerSettings[i].lowPower);
-								highPower[i] = new NameAndValue(freqBandNames[i],0);// _calibrationData.PowerSettings[i].lowPower);
-							}
+							calibrationPowerControlLow.Names = freqBandNames;
+							calibrationPowerControlHigh.Names = freqBandNames;
 
-							calibrationPowerControlLow.ListData = lowPower;
-							calibrationPowerControlHigh.ListData = highPower;
 						}
 						break;
 					case "UHF":
@@ -54,15 +51,8 @@ namespace GD77_FlashManager
 							calibrationPowerControlHigh.Cols = 16;
 							calibrationPowerControlLow.Cols = 16;
 							string[] freqBandNames = { "400", "405", "410", "415", "420", "425", "430", "435", "440", "445", "450", "455", "460", "465", "470", "475" };
-							NameAndValue[] lowPower = new NameAndValue[freqBandNames.Length];
-							NameAndValue[] highPower = new NameAndValue[freqBandNames.Length];
-							for (int i = 0; i < freqBandNames.Length; i++)
-							{
-								lowPower[i] = new NameAndValue(freqBandNames[i],0); //_calibrationData.PowerSettings[i].lowPower);
-								highPower[i] = new NameAndValue(freqBandNames[i], 0);//_calibrationData.PowerSettings[i].lowPower);
-							}
-							calibrationPowerControlLow.ListData = lowPower;
-							calibrationPowerControlHigh.ListData = highPower;
+							calibrationPowerControlLow.Names = freqBandNames;
+							calibrationPowerControlHigh.Names = freqBandNames;
 						}
 						break;
 				}
@@ -84,6 +74,37 @@ namespace GD77_FlashManager
 				_calibrationData.MuteStrictNarrowbandClose1 = (byte)this.nudSquelchNarrowTightClose.Value;
 				_calibrationData.ReceiveAGCGainTarget		= (byte)this.nudReceiveAGCTarget.Value;
 				_calibrationData.MicGainAnalog				= (byte)this.nudAnalogMicGain.Value;
+
+				// Power
+				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
+				for (int i = 0; i < numItems; i++)
+				{
+					_calibrationData.PowerSettings[i].lowPower  = (byte)calibrationPowerControlLow.Values[i];
+					_calibrationData.PowerSettings[i].highPower = (byte)calibrationPowerControlHigh.Values[i];
+				}
+
+				// Digital \mic gain
+				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				for (int i = 0; i < numItems; i++)
+				{
+					_calibrationData.MicGainDigital[i] = (byte)calibrationDigitalMicGain.Values[i];
+				}
+
+				// TX I & Q
+				numItems = calibrationTXIandQ.Rows * calibrationTXIandQ.Cols;
+				for (int i = 0; i < numItems; i++)
+				{
+					_calibrationData.TXIandQ[i] = (byte)calibrationTXIandQ.Values[i];
+				}
+
+
+				// Deviation control
+				numItems = calibrationDeviationControl.Rows * calibrationDeviationControl.Cols;
+				for (int i = 0; i < numItems; i++)
+				{
+					_calibrationData.DeviationControl[i] = (byte)calibrationDeviationControl.Values[i];
+				}
+
 				return _calibrationData; 
 			}
 			set 
@@ -101,22 +122,49 @@ namespace GD77_FlashManager
 				this.nudSquelchNarrowTightClose.Value	= _calibrationData.MuteStrictNarrowbandClose1;
 				this.nudReceiveAGCTarget.Value			= _calibrationData.ReceiveAGCGainTarget;
 				this.nudAnalogMicGain.Value				= _calibrationData.MicGainAnalog;
-				{
-					int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
-					int[] lowPower = new int[numItems];
-					int[] highPower = new int[numItems];
-					for (int i = 0; i < numItems; i++)
-					{
-						lowPower[i] = _calibrationData.PowerSettings[i].lowPower;
-						highPower[i] = _calibrationData.PowerSettings[i].highPower;
-					}
 
-					calibrationPowerControlLow.Values = lowPower;
-					calibrationPowerControlHigh.Values = highPower;
+				// Power
+				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
+				int[] lowPower = new int[numItems];
+				int[] highPower = new int[numItems];
+				for (int i = 0; i < numItems; i++)
+				{
+					lowPower[i] = _calibrationData.PowerSettings[i].lowPower;
+					highPower[i] = _calibrationData.PowerSettings[i].highPower;
 				}
-			
+				calibrationPowerControlLow.Values = lowPower;
+				calibrationPowerControlHigh.Values = highPower;
+
+				// Digital mic gain
+				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				int[] micGainDigital = new int[numItems];
+				for (int i = 0; i < numItems; i++)
+				{
+					micGainDigital[i] = _calibrationData.MicGainDigital[i];
+				}
+				calibrationDigitalMicGain.Values = micGainDigital;
+
+				// TX I & Q
+				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				int[] txIAndQ = new int[numItems];
+				for (int i = 0; i < numItems; i++)
+				{
+					txIAndQ[i] = _calibrationData.TXIandQ[i];
+				}
+				calibrationTXIandQ.Values = txIAndQ;
+
+				// Deviation control
+				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				int[] deviationControl = new int[numItems];
+				for (int i = 0; i < numItems; i++)
+				{
+					deviationControl[i] = _calibrationData.TXIandQ[i];
+				}
+				this.calibrationDeviationControl.Values = deviationControl;
+
 
 			}
 		}
+
 	}
 }
