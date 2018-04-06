@@ -55,10 +55,10 @@
 			this.calibrationPowerControlLow = new GD77_FlashManager.CalibrationPowerControl();
 			this.calibrationPowerControlHigh = new GD77_FlashManager.CalibrationPowerControl();
 			this.grpSMeter = new System.Windows.Forms.GroupBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
-			this.nudSMeterLow = new System.Windows.Forms.NumericUpDown();
 			this.nudSMeterHigh = new System.Windows.Forms.NumericUpDown();
+			this.nudSMeterLow = new System.Windows.Forms.NumericUpDown();
+			this.label7 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.grpSquelch.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchNarrowTightClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSquelchWideTightClose)).BeginInit();
@@ -72,8 +72,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudReceiveAGCTarget)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).BeginInit();
 			this.grpSMeter.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSMeterHigh)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// grpSquelch
@@ -315,7 +315,7 @@
 			// calibrationTXIandQ
 			// 
 			this.calibrationTXIandQ.Cols = 8;
-			this.calibrationTXIandQ.GroupText = "TX I & Q";
+			this.calibrationTXIandQ.GroupText = "TX I && Q";
 			this.calibrationTXIandQ.Location = new System.Drawing.Point(440, 181);
 			this.calibrationTXIandQ.Name = "calibrationTXIandQ";
 			this.calibrationTXIandQ.Names = new string[] {
@@ -497,23 +497,17 @@
 			this.grpSMeter.TabStop = false;
 			this.grpSMeter.Text = "S Meter";
 			// 
-			// label2
+			// nudSMeterHigh
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(6, 58);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(51, 13);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "High End\t";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(6, 30);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(49, 13);
-			this.label7.TabIndex = 8;
-			this.label7.Text = "Low End\t";
+			this.nudSMeterHigh.Location = new System.Drawing.Point(61, 56);
+			this.nudSMeterHigh.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+			this.nudSMeterHigh.Name = "nudSMeterHigh";
+			this.nudSMeterHigh.Size = new System.Drawing.Size(41, 20);
+			this.nudSMeterHigh.TabIndex = 16;
 			// 
 			// nudSMeterLow
 			// 
@@ -527,17 +521,23 @@
 			this.nudSMeterLow.Size = new System.Drawing.Size(41, 20);
 			this.nudSMeterLow.TabIndex = 15;
 			// 
-			// nudSMeterHigh
+			// label7
 			// 
-			this.nudSMeterHigh.Location = new System.Drawing.Point(61, 56);
-			this.nudSMeterHigh.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-			this.nudSMeterHigh.Name = "nudSMeterHigh";
-			this.nudSMeterHigh.Size = new System.Drawing.Size(41, 20);
-			this.nudSMeterHigh.TabIndex = 16;
+			this.label7.AutoSize = true;
+			this.label7.Location = new System.Drawing.Point(6, 30);
+			this.label7.Name = "label7";
+			this.label7.Size = new System.Drawing.Size(49, 13);
+			this.label7.TabIndex = 8;
+			this.label7.Text = "Low End\t";
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(6, 58);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(51, 13);
+			this.label2.TabIndex = 7;
+			this.label2.Text = "High End\t";
 			// 
 			// CalibrationBandControl
 			// 
@@ -573,8 +573,8 @@
 			((System.ComponentModel.ISupportInitialize)(this.nudAnalogMicGain)).EndInit();
 			this.grpSMeter.ResumeLayout(false);
 			this.grpSMeter.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudSMeterHigh)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.nudSMeterLow)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

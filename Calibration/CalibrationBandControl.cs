@@ -33,16 +33,17 @@ namespace GD77_FlashManager
 				string[] oneToEight = { "1", "2", "3", "4", "5", "6", "7", "8" };
 				this.calibrationDigitalMicGain.Names = oneToEight;
 				this.calibrationTXIandQ.Names = oneToEight;
-				this.calibrationDeviationControl.Names = oneToEight;
+
 				switch(_type)
 				{
 					case "VHF":
 						{
 							calibrationPowerControlHigh.Cols = 8;
 							calibrationPowerControlLow.Cols = 8;
-							string[] freqBandNames = { "136","140","145","150","155","160","165","172"};
+							string[] freqBandNames = { "136MHz", "140MHz", "145MHz", "150MHz", "155MHz", "160MHz", "165MHz", "172MHz" };
 							calibrationPowerControlLow.Names = freqBandNames;
 							calibrationPowerControlHigh.Names = freqBandNames;
+							this.calibrationDeviationControl.Names = freqBandNames;
 
 						}
 						break;
@@ -50,9 +51,11 @@ namespace GD77_FlashManager
 						{
 							calibrationPowerControlHigh.Cols = 16;
 							calibrationPowerControlLow.Cols = 16;
-							string[] freqBandNames = { "400", "405", "410", "415", "420", "425", "430", "435", "440", "445", "450", "455", "460", "465", "470", "475" };
-							calibrationPowerControlLow.Names = freqBandNames;
-							calibrationPowerControlHigh.Names = freqBandNames;
+							string[] freqBandNames16 = { "400MHz", "405MHz", "410MHz", "415MHz", "420MHz", "425MHz", "430MHz", "435MHz", "440MHz", "445MHz", "450MHz", "455MHz", "460MHz", "465MHz", "470MHz", "475MHz" };
+							string[] freqBandNames8 = { "405MHz", "415MHz", "425MHz", "435MHz", "445MHz", "455MHz", "465MHz", "475MHz" };
+							calibrationPowerControlLow.Names = freqBandNames16;
+							calibrationPowerControlHigh.Names = freqBandNames16;
+							this.calibrationDeviationControl.Names = freqBandNames8;
 						}
 						break;
 				}
