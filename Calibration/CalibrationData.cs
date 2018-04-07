@@ -3,12 +3,20 @@ using System.Runtime.InteropServices;
 
 namespace GD77_FlashManager
 {
+
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public class CalibrationData
 	{
+		public UInt16 DigitalRxGainNarrowband_NOTCONFIRMED;// NOT CONFIRMED
+		public UInt16 DigitalTxGainNarrowband_NOTCONFIRMED;// NOT CONFIRMED
+		public UInt16 DigitalRxGainWideband_NOTCONFIRMED;// NOT CONFIRMED
+		public UInt16 DigitalTxGainWideband_NOTCONFIRMED;// NOT CONFIRMED
+		
+		/* Superseded by the variables above
 		// Changing any of them reduced the Tx power to virtually nothing
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] UnknownBlock1;// Uknown. Changing any of these values causes Tx power to drop to virtuially zero
+		*/
 
 		public UInt16 DACOscRefTune;// 	DAC word for frequency reference oscillator
 
@@ -25,14 +33,8 @@ namespace GD77_FlashManager
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
 		public byte[] UnknownBlock3;// Unkown
 
-		/*
-		 * Digital mic gain ( possibly MBE Equalisation )
-		 * Note. 
-		 * UHF appears to have 8 bytes of data, 
-		 * VHF only seems to use the first 6 bytes as the last 2 contain 0xff which is totally different from the values in the first 6 bytes
-		 */
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] 
-		public byte[] MicGainDigital;// Note 
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+		public byte[] UknownBlock9;// Note 
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
 		public byte[] UnknownBlock4;// Seems to contain 0x00 on both VHF and UHF. Potentially unused
@@ -41,7 +43,7 @@ namespace GD77_FlashManager
 		public byte[] UnknownBlock5;// Different values on VHF and UHF byt all in the range 0x12 - 0x1D
 
 
-
+		//  Analog Squelch controls
 		public byte MuteStrictWidebandClose1;
 		public byte MuteStrictWidebandOpen1;
 		public byte MuteStrictWidebandClose2;
@@ -66,39 +68,51 @@ namespace GD77_FlashManager
 		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] TXIandQ;
+		public byte[] TXIandQ;// Don't adjust
 
-		public byte UnknownBlock6;// 0x1D on VHF and UHF
+		public byte DigitalRxAudioGainAndBeepVolume;// The Rx audio gain and the beep volume seem linked together.  0x1D on VHF and UHF
 
-		/*
-		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
-		 * UHF 405Mhz - 475Mhz (in 10Mhz steps)
-		 */
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] DeviationControl;// 136Mhz , 140Mhz - 165Mhz, 172Mhz . Bits 0-4 conbined deviation, bit 5 CTCSS?DCS deviation, bits 6:7 DCS only deviation
+		public byte AnalogTxDeviationDTMF;
+		public byte AnalogTxDeviation1750Toneburst;
+		public byte AnalogTxDeviationCTCSSWideband;
+		public byte AnalogTxDeviationCTCSSNarrowband;
+		public byte AnalogTxDeviationDCSWideband;
+		public byte AnalogTxDeviationDCSNarrowband;
 
-		public byte MicGainAnalog;// Both wide and narrow band
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+		public byte[] UnknownBlock8;
+
+		public byte AnalogMicGain;// Both wide and narrow band
 		public byte ReceiveAGCGainTarget; // Receiver AGC target. Higher values give more gain. Reducing this may improve receiver overload with strong signals, but would reduce sensitivity
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+		public UInt16 AnalogOverallDeviationwideband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
+		public UInt16 AnalogOverallDeviationnarrband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
+		
+		// Not sure why there are 2 of these and what the difference is.
+		public byte AnalogRxAudioGain1;// normally a 0x0F
+		public byte AnalogRxAudioGain2;// normally a 0x0F
+
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
 		public byte[] UnknownBlock7;
 
 		public CalibrationData()
 		{
-			this.UnknownBlock1 = new byte[8];
-
+			/* Superseded
+			 * this.UnknownBlock1 = new byte[8];
+			 */
 			this.PowerSettings = new PowerSettingData[16];
 			for (int i = 0; i < 16; i++)
 			{
 				PowerSettings[i] = new PowerSettingData();
 			}
 			this.UnknownBlock3 = new byte[8];
-			this.MicGainDigital = new byte[8];
+			this.UknownBlock9 = new byte[8];
 			this.UnknownBlock4 = new byte[4];
 			this.UnknownBlock5 = new byte[8];
 			this.TXIandQ = new byte[8];
-			this.DeviationControl = new byte[8];
-			this.UnknownBlock7 = new byte[8];
+			this.UnknownBlock7 = new byte[2];
+			this.UnknownBlock8 = new byte[2];
+			
 		}
 
 	}

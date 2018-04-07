@@ -50,7 +50,7 @@ namespace GD77_FlashManager
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(921, 592);
+			this.tabControl1.Size = new System.Drawing.Size(921, 467);
 			this.tabControl1.TabIndex = 0;
 			// 
 			// tabVHF
@@ -59,7 +59,7 @@ namespace GD77_FlashManager
 			this.tabVHF.Location = new System.Drawing.Point(4, 22);
 			this.tabVHF.Name = "tabVHF";
 			this.tabVHF.Padding = new System.Windows.Forms.Padding(3);
-			this.tabVHF.Size = new System.Drawing.Size(913, 566);
+			this.tabVHF.Size = new System.Drawing.Size(913, 441);
 			this.tabVHF.TabIndex = 0;
 			this.tabVHF.Text = "VHF";
 			this.tabVHF.UseVisualStyleBackColor = true;
@@ -70,14 +70,14 @@ namespace GD77_FlashManager
 			this.tabUHF.Location = new System.Drawing.Point(4, 22);
 			this.tabUHF.Name = "tabUHF";
 			this.tabUHF.Padding = new System.Windows.Forms.Padding(3);
-			this.tabUHF.Size = new System.Drawing.Size(913, 566);
+			this.tabUHF.Size = new System.Drawing.Size(913, 441);
 			this.tabUHF.TabIndex = 1;
 			this.tabUHF.Text = "UHF";
 			this.tabUHF.UseVisualStyleBackColor = true;
 			// 
 			// btnSave
 			// 
-			this.btnSave.Location = new System.Drawing.Point(760, 610);
+			this.btnSave.Location = new System.Drawing.Point(760, 499);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(75, 23);
 			this.btnSave.TabIndex = 1;
@@ -87,7 +87,7 @@ namespace GD77_FlashManager
 			// 
 			// btnCancel
 			// 
-			this.btnCancel.Location = new System.Drawing.Point(854, 610);
+			this.btnCancel.Location = new System.Drawing.Point(854, 499);
 			this.btnCancel.Name = "btnCancel";
 			this.btnCancel.Size = new System.Drawing.Size(75, 23);
 			this.btnCancel.TabIndex = 1;
@@ -99,7 +99,7 @@ namespace GD77_FlashManager
 			// 
 			this.calibrationBandControlVHF.Location = new System.Drawing.Point(5, 5);
 			this.calibrationBandControlVHF.Name = "calibrationBandControlVHF";
-			this.calibrationBandControlVHF.Size = new System.Drawing.Size(880, 545);
+			this.calibrationBandControlVHF.Size = new System.Drawing.Size(880, 445);
 			this.calibrationBandControlVHF.TabIndex = 0;
 			this.calibrationBandControlVHF.Type = "VHF";
 			// 
@@ -107,7 +107,7 @@ namespace GD77_FlashManager
 			// 
 			this.calibrationBandControlUHF.Location = new System.Drawing.Point(5, 5);
 			this.calibrationBandControlUHF.Name = "calibrationBandControlUHF";
-			this.calibrationBandControlUHF.Size = new System.Drawing.Size(882, 555);
+			this.calibrationBandControlUHF.Size = new System.Drawing.Size(882, 430);
 			this.calibrationBandControlUHF.TabIndex = 0;
 			this.calibrationBandControlUHF.Type = "UHF";
 			// 
@@ -115,7 +115,7 @@ namespace GD77_FlashManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(945, 645);
+			this.ClientSize = new System.Drawing.Size(945, 537);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.tabControl1);

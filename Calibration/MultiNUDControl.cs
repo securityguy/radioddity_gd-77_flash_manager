@@ -145,7 +145,7 @@ namespace GD77_FlashManager
 				}
 				yPos += ctl.Height;
 			}
-			groupBox1.Width = xPos+10;
+			groupBox1.Width = xPos+5;
 			groupBox1.Height = yPos+15;
 		}
 

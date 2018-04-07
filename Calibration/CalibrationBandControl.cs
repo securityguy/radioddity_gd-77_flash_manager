@@ -31,31 +31,29 @@ namespace GD77_FlashManager
 			{
 				_type = value;
 				string[] oneToEight = { "1", "2", "3", "4", "5", "6", "7", "8" };
-				this.calibrationDigitalMicGain.Names = oneToEight;
+				string[] oneToSix = { "1", "2", "3", "4", "5", "6" };
+				string[] freqBandNamesVHF8 = { "136MHz", "140MHz", "145MHz", "150MHz", "155MHz", "160MHz", "165MHz", "172MHz" };
+				string[] freqBandNamesUHF16 = { "400MHz", "405MHz", "410MHz", "415MHz", "420MHz", "425MHz", "430MHz", "435MHz", "440MHz", "445MHz", "450MHz", "455MHz", "460MHz", "465MHz", "470MHz", "475MHz" };
+				string[] freqBandNamesUHF8 = { "405MHz", "415MHz", "425MHz", "435MHz", "445MHz", "455MHz", "465MHz", "475MHz" };
+				
 				this.calibrationTXIandQ.Names = oneToEight;
 
 				switch(_type)
 				{
 					case "VHF":
 						{
-							calibrationPowerControlHigh.Cols = 8;
-							calibrationPowerControlLow.Cols = 8;
-							string[] freqBandNames = { "136MHz", "140MHz", "145MHz", "150MHz", "155MHz", "160MHz", "165MHz", "172MHz" };
-							calibrationPowerControlLow.Names = freqBandNames;
-							calibrationPowerControlHigh.Names = freqBandNames;
-							this.calibrationDeviationControl.Names = freqBandNames;
-
+							this.calibrationPowerControlHigh.Cols = 8;
+							this.calibrationPowerControlLow.Cols = 8;
+							this.calibrationPowerControlLow.Names = freqBandNamesVHF8;
+							this.calibrationPowerControlHigh.Names = freqBandNamesVHF8;
 						}
 						break;
 					case "UHF":
 						{
-							calibrationPowerControlHigh.Cols = 16;
-							calibrationPowerControlLow.Cols = 16;
-							string[] freqBandNames16 = { "400MHz", "405MHz", "410MHz", "415MHz", "420MHz", "425MHz", "430MHz", "435MHz", "440MHz", "445MHz", "450MHz", "455MHz", "460MHz", "465MHz", "470MHz", "475MHz" };
-							string[] freqBandNames8 = { "405MHz", "415MHz", "425MHz", "435MHz", "445MHz", "455MHz", "465MHz", "475MHz" };
-							calibrationPowerControlLow.Names = freqBandNames16;
-							calibrationPowerControlHigh.Names = freqBandNames16;
-							this.calibrationDeviationControl.Names = freqBandNames8;
+							this.calibrationPowerControlHigh.Cols = 16;
+							this.calibrationPowerControlLow.Cols = 16;
+							this.calibrationPowerControlLow.Names = freqBandNamesUHF16;
+							this.calibrationPowerControlHigh.Names = freqBandNamesUHF16;
 						}
 						break;
 				}
@@ -76,7 +74,7 @@ namespace GD77_FlashManager
 				_calibrationData.MuteStrictNarrowbandOpen1	= (byte)this.nudSquelchNarrowTightOpen.Value;
 				_calibrationData.MuteStrictNarrowbandClose1 = (byte)this.nudSquelchNarrowTightClose.Value;
 				_calibrationData.ReceiveAGCGainTarget		= (byte)this.nudReceiveAGCTarget.Value;
-				_calibrationData.MicGainAnalog				= (byte)this.nudAnalogMicGain.Value;
+				_calibrationData.AnalogMicGain				= (byte)this.nudAnalogMicGain.Value;
 				_calibrationData.RSSILowerThreshold			= (byte)this.nudSMeterLow.Value;
 				_calibrationData.RSSIUpperThreshold			= (byte)this.nudSMeterHigh.Value;
 
@@ -85,6 +83,16 @@ namespace GD77_FlashManager
 				_calibrationData.MuteStrictNarrowbandOpen2 = _calibrationData.MuteStrictNarrowbandOpen1;
 				_calibrationData.MuteStrictNarrowbandClose2 = _calibrationData.MuteStrictNarrowbandClose1;
 
+				_calibrationData.AnalogTxDeviationDTMF					= (byte)this.nudAnalogTxDeviationDTMF.Value;
+				_calibrationData.AnalogTxDeviation1750Toneburst			= (byte)this.nudAnalogTxDeviation1750Tone.Value;
+				_calibrationData.AnalogTxDeviationCTCSSWideband			= (byte)this.nudAnalogTxDeviationCTCSSWideband.Value;
+				_calibrationData.AnalogTxDeviationCTCSSNarrowband		= (byte)this.nudAnalogTxDeviationCTCSSNarrowband.Value;
+				_calibrationData.AnalogTxDeviationDCSWideband			= (byte)this.nudlAnalogTxDeviationDCSWideband.Value;
+				_calibrationData.AnalogTxDeviationDCSNarrowband			= (byte)this.nudAnalogTxDeviationDCSNarrowband.Value;
+				_calibrationData.DigitalTxGainWideband_NOTCONFIRMED		= (UInt16)this.nudDigitalTxGainWideband.Value;
+				_calibrationData.DigitalTxGainNarrowband_NOTCONFIRMED	= (UInt16)this.nudDigitalTxGainNarrowband.Value;
+				_calibrationData.DigitalRxGainWideband_NOTCONFIRMED		= (UInt16)this.nudDigitalRxGainWideband.Value;
+				_calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED	= (UInt16)this.nudDigitalRxGainNarrowband.Value;
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
@@ -94,26 +102,12 @@ namespace GD77_FlashManager
 					_calibrationData.PowerSettings[i].highPower = (byte)calibrationPowerControlHigh.Values[i];
 				}
 
-				// Digital \mic gain
-				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
-				for (int i = 0; i < numItems; i++)
-				{
-					_calibrationData.MicGainDigital[i] = (byte)calibrationDigitalMicGain.Values[i];
-				}
 
 				// TX I & Q
 				numItems = calibrationTXIandQ.Rows * calibrationTXIandQ.Cols;
 				for (int i = 0; i < numItems; i++)
 				{
 					_calibrationData.TXIandQ[i] = (byte)calibrationTXIandQ.Values[i];
-				}
-
-
-				// Deviation control
-				numItems = calibrationDeviationControl.Rows * calibrationDeviationControl.Cols;
-				for (int i = 0; i < numItems; i++)
-				{
-					_calibrationData.DeviationControl[i] = (byte)calibrationDeviationControl.Values[i];
 				}
 
 				return _calibrationData; 
@@ -132,9 +126,20 @@ namespace GD77_FlashManager
 				this.nudSquelchNarrowTightOpen.Value	= _calibrationData.MuteStrictNarrowbandOpen1;
 				this.nudSquelchNarrowTightClose.Value	= _calibrationData.MuteStrictNarrowbandClose1;
 				this.nudReceiveAGCTarget.Value			= _calibrationData.ReceiveAGCGainTarget;
-				this.nudAnalogMicGain.Value				= _calibrationData.MicGainAnalog;
+				this.nudAnalogMicGain.Value				= _calibrationData.AnalogMicGain;
 				this.nudSMeterLow.Value					= _calibrationData.RSSILowerThreshold;
 				this.nudSMeterHigh.Value				= _calibrationData.RSSIUpperThreshold;
+
+				this.nudAnalogTxDeviationDTMF.Value				= _calibrationData.AnalogTxDeviationDTMF;
+				this.nudAnalogTxDeviation1750Tone.Value			= _calibrationData.AnalogTxDeviation1750Toneburst;
+				this.nudAnalogTxDeviationCTCSSWideband.Value	= _calibrationData.AnalogTxDeviationCTCSSWideband;
+				this.nudAnalogTxDeviationCTCSSNarrowband.Value	= _calibrationData.AnalogTxDeviationCTCSSNarrowband;
+				this.nudlAnalogTxDeviationDCSWideband.Value		= _calibrationData.AnalogTxDeviationDCSWideband;
+				this.nudAnalogTxDeviationDCSNarrowband.Value	= _calibrationData.AnalogTxDeviationDCSNarrowband;
+				this.nudDigitalTxGainWideband.Value				= _calibrationData.DigitalTxGainWideband_NOTCONFIRMED;
+				this.nudDigitalTxGainNarrowband.Value			= _calibrationData.DigitalTxGainNarrowband_NOTCONFIRMED;
+				this.nudDigitalRxGainWideband.Value				= _calibrationData.DigitalRxGainWideband_NOTCONFIRMED;
+				this.nudDigitalRxGainNarrowband.Value			= _calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED;
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
@@ -148,34 +153,14 @@ namespace GD77_FlashManager
 				calibrationPowerControlLow.Values = lowPower;
 				calibrationPowerControlHigh.Values = highPower;
 
-				// Digital mic gain
-				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
-				int[] micGainDigital = new int[numItems];
-				for (int i = 0; i < numItems; i++)
-				{
-					micGainDigital[i] = _calibrationData.MicGainDigital[i];
-				}
-				calibrationDigitalMicGain.Values = micGainDigital;
-
 				// TX I & Q
-				numItems = calibrationDigitalMicGain.Rows * calibrationDigitalMicGain.Cols;
+				numItems = this.calibrationTXIandQ.Rows * calibrationTXIandQ.Cols;
 				int[] txIAndQ = new int[numItems];
 				for (int i = 0; i < numItems; i++)
 				{
 					txIAndQ[i] = _calibrationData.TXIandQ[i];
 				}
 				calibrationTXIandQ.Values = txIAndQ;
-
-				// Deviation control
-				numItems = calibrationDeviationControl.Rows * calibrationDeviationControl.Cols;
-				int[] deviationControl = new int[numItems];
-				for (int i = 0; i < numItems; i++)
-				{
-					deviationControl[i] = _calibrationData.DeviationControl[i];
-				}
-				this.calibrationDeviationControl.Values = deviationControl;
-
-
 			}
 		}
 
