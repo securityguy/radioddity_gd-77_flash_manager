@@ -94,6 +94,12 @@ namespace GD77_FlashManager
 				_calibrationData.DigitalRxGainWideband_NOTCONFIRMED		= (UInt16)this.nudDigitalRxGainWideband.Value;
 				_calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED	= (UInt16)this.nudDigitalRxGainNarrowband.Value;
 
+				_calibrationData.AnalogTxOverallDeviationWideband = (UInt16)this.nudAnalogTxGainWideband.Value;
+				_calibrationData.AnalogTxOverallDeviationNarrband = (UInt16)this.nudAnalogTxGainNarrowband.Value;
+				_calibrationData.AnalogRxAudioGainWideband = (byte)this.nudAnalogRxGainWideband.Value;
+				_calibrationData.AnalogRxAudioGainNarrowband = (byte)this.nudAnalogRxGainNarrowband.Value;
+
+
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
 				for (int i = 0; i < numItems; i++)
@@ -140,6 +146,11 @@ namespace GD77_FlashManager
 				this.nudDigitalTxGainNarrowband.Value			= _calibrationData.DigitalTxGainNarrowband_NOTCONFIRMED;
 				this.nudDigitalRxGainWideband.Value				= _calibrationData.DigitalRxGainWideband_NOTCONFIRMED;
 				this.nudDigitalRxGainNarrowband.Value			= _calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED;
+
+				this.nudAnalogTxGainWideband.Value				= _calibrationData.AnalogTxOverallDeviationWideband;
+				this.nudAnalogTxGainNarrowband.Value			= _calibrationData.AnalogTxOverallDeviationNarrband;
+				this.nudAnalogRxGainWideband.Value				= _calibrationData.AnalogRxAudioGainWideband;
+				this.nudAnalogRxGainNarrowband.Value			= _calibrationData.AnalogRxAudioGainNarrowband;
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;

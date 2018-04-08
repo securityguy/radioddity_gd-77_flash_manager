@@ -85,12 +85,12 @@ namespace GD77_FlashManager
 		public byte AnalogMicGain;// Both wide and narrow band
 		public byte ReceiveAGCGainTarget; // Receiver AGC target. Higher values give more gain. Reducing this may improve receiver overload with strong signals, but would reduce sensitivity
 
-		public UInt16 AnalogOverallDeviationwideband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
-		public UInt16 AnalogOverallDeviationnarrband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
+		public UInt16 AnalogTxOverallDeviationWideband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
+		public UInt16 AnalogTxOverallDeviationNarrband;// CTCSS, DCS, DTMF & voice, deviation .Normally a very low value like 0x0027
 		
 		// Not sure why there are 2 of these and what the difference is.
-		public byte AnalogRxAudioGain1;// normally a 0x0F
-		public byte AnalogRxAudioGain2;// normally a 0x0F
+		public byte AnalogRxAudioGainWideband;// normally a 0x0F
+		public byte AnalogRxAudioGainNarrowband;// normally a 0x0F
 
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
 		public byte[] UnknownBlock7;
