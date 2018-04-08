@@ -254,5 +254,68 @@ namespace GD77_FlashManager
 						break;
 				}
 		}
+
+		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (DialogResult.OK == MessageBox.Show("Confirm to exit FlashManager now.\n\nPress Cancel if you want to save settings before!", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2))
+			{
+				// Use this since we are a console app
+				System.Environment.Exit(0);
+			}
+		}
+
+		private void openToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnOpen.PerformClick();
+		}
+
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnSave.PerformClick();
+		}
+
+		private void newToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnCalibration.PerformClick();
+		}
+
+		private void adjustSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (DialogResult.OK == MessageBox.Show("The Calibration feature is still in development.\nNot all paramaters have been tested\nYou use this feature at your own risk.", "WARNING", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2))
+			{
+				this.btnReadCalibration.Visible = true;
+				this.btnWriteCalibration.Visible = true;
+				this.btnCalibration.Visible = true;
+				this.calibrationToolStripMenuItem.Visible = true;
+			}
+		}
+
+		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+
+		}
+
+		private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			InfoForm inf = new InfoForm();
+			inf.ShowDialog();
+		}
+
+		private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Credits cred = new Credits();
+			cred.ShowDialog();
+		}
+
+		private void readFlashToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnRead.PerformClick();
+		}
+
+		private void writeFlashToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			btnWrite.PerformClick();
+		}
+
 	}
 }

@@ -117,7 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="richTextBox1.Text" xml:space="preserve">
+    <value>Tool to read and write some parts of the 1Mb SPI flash memory chip on the Radioddity GD-77 DMR radio.
+
+WARNING. You use this software at your own risk. Writeing arbitary portions of the flash is likely to cause the GD-77 to execute a factory reset and could potentially "brick" your GD-77 entirely.
+
+In normal mode address 0x000000 to 0x01FFFF contain the codeplug (128k) and it seems possible to read and write small address ranges e.g. 32 bytes.
+
+In DMR ID mode (Boot with SK2 and Green button and # pressed), the memory address 0x030000 to 0x04ffff seem to contain the DMR ID database. This seems to be updateable in small sections e.g. 32 bytes.
+
+Note. The code only allows a minimum of 32 bytes to be read or written and the start address must be on a 32 byte boundard
+
+The GD-77 firmware seems to allow transfers of 8, 16 or 32 bytes, but does not seem to allow any larger transfers. Also the CPS never seems to transfer over a 32 byte boundard, but I've not tested to see if this is a real limit in the firmware (3.0.6) or not.
+
+I have not implemented 8 or 16 byte transfers, as its easy to read a 32 byte section, modify the bytes you want to change and then write that section
+
+Note. At the moment it unclear how the firmware manages the page erases, in the flash memory, because with flash memory a page (typically 1k, 2k, 4k, 8k etc) must be erased before data can be written.
+
+Find more info at the project page: 
+https://github.com/rogerclarkmelbourne/radioddity_gd-77_flash_manager
+</value>
+  </data>
 </root>
