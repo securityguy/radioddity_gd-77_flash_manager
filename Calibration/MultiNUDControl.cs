@@ -95,7 +95,24 @@ namespace GD77_FlashManager
 				updateComponents();
 			}
 		}
-		public string GroupText
+
+		[EditorBrowsable(EditorBrowsableState.Always)]
+		[Browsable(true)]
+		[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+		[Bindable(true)]
+		public override string Text
+		{
+			get
+			{
+				return this.groupBox1.Text;
+			}
+			set
+			{
+				this.groupBox1.Text = value;
+			}
+		}
+
+		public string CtrlText
 		{
 			get
 			{
@@ -133,7 +150,7 @@ namespace GD77_FlashManager
 				xPos = 5;
 				for (int c = 0; c < _cols; c++)
 				{
-					ctl = new GD77_FlashManager.CalibrationNUDLabelControl();
+					ctl = new CalibrationNUDLabelControl();
 					ctl.bandName = "label_" + r + "_" + c;
 					ctl.bandValue = ((byte)(0));
 					ctl.Location = new System.Drawing.Point(xPos, yPos);

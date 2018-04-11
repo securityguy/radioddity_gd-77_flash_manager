@@ -70,6 +70,7 @@
     <Compile Include="Calibration\MultiNUDControl.Designer.cs">
       <DependentUpon>MultiNUDControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Calibration\PowerSettingData.cs" />
     <Compile Include="CodeplugComms.cs" />
     <Compile Include="CommPrgForm.cs">
       <SubType>Form</SubType>
@@ -113,7 +114,6 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IFirmwareUpdate.cs" />
-    <Compile Include="PowerSettingData.cs" />
     <Compile Include="Program.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -18,42 +18,41 @@ namespace GD77_FlashManager
 		//private CalibrationData _vhfData;
 		//private CalibrationData _uhfData;
 
-		public CalibrationForm()
+		public CalibrationForm() 
 		{
 			InitializeComponent();
 			// Need to setup the VHF and UHF data storage class first, as its used when initialising the components
 			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
 			byte[] array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.eeprom, 0x8F000, array, 0, calibrationDataSize);
+			Array.Copy(MainForm.CommsBuffer, 0x8F000, array, 0, calibrationDataSize);
 			this.calibrationBandControlUHF.data  = (CalibrationData)ByteToData(array);
 
 			array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.eeprom, 0x8F070, array, 0, calibrationDataSize);
+			Array.Copy(MainForm.CommsBuffer, 0x8F070, array, 0, calibrationDataSize);
 			this.calibrationBandControlVHF.data  = (CalibrationData)ByteToData(array);
-
 		}
 
-		private void btnSave_Click(object sender, EventArgs e)
+		private void btnWrite_Click(object sender, EventArgs e)
 		{
-			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
-			/* Superseded. This block of data is now presumed to be DMR Tx and Rx Gagin controls
-			Console.WriteLine(BitConverter.ToString(this.calibrationBandControlVHF.data.UnknownBlock1).Replace("-", ""));
-			if ("A00FC012A00FC012" != BitConverter.ToString(this.calibrationBandControlUHF.data.UnknownBlock1).Replace("-", "") ||
-				"5005CC065005CC06" != BitConverter.ToString(this.calibrationBandControlVHF.data.UnknownBlock1).Replace("-", ""))
+			if (DialogResult.Yes != MessageBox.Show("Writing the calibration data to Radioddity GD-77 or any other compatible radio, could potentially damage your radio.\n\nBy clicking 'Yes' you acknowledge that you use this feature entirely at your own risk", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2))
 			{
-				MessageBox.Show("The UHF signature block is not set to 0xA00FC012A00FC012\nOr the VHF signature is not set to 05005CC065005CC06\nUse the hex editor to fix this problem.","Data Error!");
+				return;
 			}
-			*/
+
+			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
+
 			byte[] array = DataToByte(this.calibrationBandControlUHF.data);
-			Array.Copy(array, 0, MainForm.eeprom, 0x8F000, calibrationDataSize);
+			Array.Copy(array, 0, MainForm.CommsBuffer, 0x8F000, calibrationDataSize);
 
 			array = DataToByte(this.calibrationBandControlVHF.data);
-			Array.Copy(array, 0, MainForm.eeprom, 0x8F070, calibrationDataSize);
+			Array.Copy(array, 0, MainForm.CommsBuffer, 0x8F070, calibrationDataSize);
+			this.DialogResult = DialogResult.OK;
 			Close();
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
+			this.DialogResult = DialogResult.Cancel;
 			Close();
 		}
 
@@ -78,11 +77,11 @@ namespace GD77_FlashManager
 			return array;
 		}
 
-		private void onFormLoad(object sender, EventArgs e)
+		private void onFormShown(object sender, EventArgs e)
 		{
-			if ("" != MainForm.FileName)
+			if (DialogResult.Yes != MessageBox.Show("This feature is provided 'as is'. You use it at your own risk.\n\nMaking changes to the flash memory in the Radioddity GD-77 or any other compatible radio, using this feature, could potentially damage your radio.\n\nBy clicking 'Yes' you acknowledge that you use this software entirely at your own risk", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button2))
 			{
-				this.Text = "Calibration: " + MainForm.FileName;
+				this.Close();
 			}
 		}
 	}

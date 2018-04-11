@@ -193,7 +193,7 @@ internal class CodeplugComms
 									goto end_IL_02a2;
 								}
 
-								Buffer.BlockCopy(usbBuf, 4, MainForm.eeprom, (block * blockLength), blockLength);// Extract the first 8 bytes from the response
+								Buffer.BlockCopy(usbBuf, 4, MainForm.CommsBuffer, (block * blockLength), blockLength);// Extract the first 8 bytes from the response
 
 								if (this.OnFirmwareUpdateProgress != null)
 								{
@@ -318,7 +318,7 @@ internal class CodeplugComms
 								0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 								Array.Clear(usbBuf, 0, usbBuf.Length);
-								Buffer.BlockCopy(MainForm.eeprom, (block * blockLength), data2, 4, blockLength);
+								Buffer.BlockCopy(MainForm.CommsBuffer, (block * blockLength), data2, 4, blockLength);
 								specifiedDevice.SendData(data2, 0, 4+32);
 								//Console.WriteLine("Send Data to address 0x"+addr16.ToString("X"));
 

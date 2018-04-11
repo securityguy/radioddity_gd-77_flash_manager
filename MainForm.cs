@@ -15,7 +15,7 @@ namespace GD77_FlashManager
 {
 	public partial class MainForm : Form
 	{
-		public static byte [] eeprom = new byte[1024 * 1024];
+		public static byte [] CommsBuffer = new byte[1024 * 1024];
 		public static int startAddress;
 		public static int transferLength;
 		private FixedByteProvider _dbp;
@@ -32,7 +32,7 @@ namespace GD77_FlashManager
 			this.btnWriteCalibration.Visible = false;
 			this.btnCalibration.Visible = false;
 
-			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 			
 			_dbp.Changed += new EventHandler(onDataProviderChanged);// No point doing something every time this changes, as it only alerts to the fact that something has changed and not what specific byte has changed
 		}
@@ -66,13 +66,13 @@ namespace GD77_FlashManager
 				return;
 			}
 
-			if (MainForm.startAddress + MainForm.transferLength > MainForm.eeprom.Length)
+			if (MainForm.startAddress + MainForm.transferLength > MainForm.CommsBuffer.Length)
 			{
 				MessageBox.Show("Start address and length settings would result in reading beyond the end of memory");
 				return;
 			}
 			commPrgForm.ShowDialog();
-			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 			hexBox.ScrollByteToTop(MainForm.startAddress);
 			_hexboxHasChanged = false;
 		}
@@ -85,7 +85,7 @@ namespace GD77_FlashManager
 			MainForm.startAddress = 0x80000;
 			MainForm.transferLength = 0x10000;
 			commPrgForm.ShowDialog();
-			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 			hexBox.ScrollByteToTop(0x8F000);
 			_hexboxHasChanged = false;
 		}
@@ -124,7 +124,7 @@ namespace GD77_FlashManager
 				return;
 			}
 
-			if (MainForm.startAddress + MainForm.transferLength > MainForm.eeprom.Length)
+			if (MainForm.startAddress + MainForm.transferLength > MainForm.CommsBuffer.Length)
 			{
 				MessageBox.Show("Start address and length settings would result in writing beyond the end of memory");
 				return;
@@ -143,10 +143,10 @@ namespace GD77_FlashManager
 			{
 				try
 				{
-					MainForm.eeprom = File.ReadAllBytes(openFileDialog1.FileName);
+					MainForm.CommsBuffer = File.ReadAllBytes(openFileDialog1.FileName);
 					MainForm.FileName = openFileDialog1.FileName;
 					MainForm.ActiveForm.Text = AppName + " - Current File: " + FileName;
-					hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+					hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 					_hexboxHasChanged = false;
 				}
 				catch (Exception ex)
@@ -166,14 +166,14 @@ namespace GD77_FlashManager
 			if (saveFileDialog1.ShowDialog() == DialogResult.OK)
 			{
 				copyHexboxToEeprom();
-				File.WriteAllBytes(saveFileDialog1.FileName, MainForm.eeprom);
+				File.WriteAllBytes(saveFileDialog1.FileName, MainForm.CommsBuffer);
 			}
 		}
 		private void btnCalibration_Click(object sender, EventArgs e)
 		{
 			CalibrationForm cf = new CalibrationForm();
 			cf.ShowDialog();
-			hexBox.ByteProvider = _dbp = new FixedByteProvider(eeprom);
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 			hexBox.ScrollByteToTop(0x8F000);
 		}
 
@@ -182,7 +182,7 @@ namespace GD77_FlashManager
 		//	if (_hexboxHasChanged)
 			{
 				Console.WriteLine("HexBox changed");
-				Array.Copy(_dbp.Bytes.ToArray<byte>(), MainForm.eeprom, MainForm.eeprom.Length);
+				Array.Copy(_dbp.Bytes.ToArray<byte>(), MainForm.CommsBuffer, MainForm.CommsBuffer.Length);
 				_hexboxHasChanged = false;
 			}
 		}
