@@ -148,7 +148,8 @@ namespace GD77_FlashManager
 					{
 						MessageBox.Show("File is smaller than the size of the flash memory.\nOnly the fisrt "+ tmp.Length + " bytes have been updated", "Warning");
 					}
-					tmp.CopyTo(MainForm.CommsBuffer, 0);
+					CommsBuffer = new byte[1024 * 1024];// Clear the whole memory buffer my making a new one.
+					tmp.CopyTo(MainForm.CommsBuffer, 0);// copy the new data into the empty buffer
 					MainForm.FileName = openFileDialog1.FileName;
 					MainForm.ActiveForm.Text = AppName + " - Current File: " + FileName;
 					hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
