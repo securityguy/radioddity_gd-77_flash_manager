@@ -60,6 +60,7 @@ namespace GD77_FlashManager
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -201,6 +202,7 @@ namespace GD77_FlashManager
             this.newToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.mergeToolStripMenuItem,
             this.toolStripSeparator1,
             this.readFlashToolStripMenuItem,
             this.writeFlashToolStripMenuItem,
@@ -213,52 +215,52 @@ namespace GD77_FlashManager
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newToolStripMenuItem.Text = "New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
 			// 
 			// readFlashToolStripMenuItem
 			// 
 			this.readFlashToolStripMenuItem.Name = "readFlashToolStripMenuItem";
-			this.readFlashToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.readFlashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.readFlashToolStripMenuItem.Text = "Read Flash";
 			this.readFlashToolStripMenuItem.Click += new System.EventHandler(this.readFlashToolStripMenuItem_Click);
 			// 
 			// writeFlashToolStripMenuItem
 			// 
 			this.writeFlashToolStripMenuItem.Name = "writeFlashToolStripMenuItem";
-			this.writeFlashToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.writeFlashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.writeFlashToolStripMenuItem.Text = "Write Flash";
 			this.writeFlashToolStripMenuItem.Click += new System.EventHandler(this.writeFlashToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -276,20 +278,20 @@ namespace GD77_FlashManager
 			// readFromRadioToolStripMenuItem
 			// 
 			this.readFromRadioToolStripMenuItem.Name = "readFromRadioToolStripMenuItem";
-			this.readFromRadioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.readFromRadioToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.readFromRadioToolStripMenuItem.Text = "Read from radio";
 			// 
 			// adjustSettingsToolStripMenuItem
 			// 
 			this.adjustSettingsToolStripMenuItem.Name = "adjustSettingsToolStripMenuItem";
-			this.adjustSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.adjustSettingsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.adjustSettingsToolStripMenuItem.Text = "Adjust settings";
 			this.adjustSettingsToolStripMenuItem.Click += new System.EventHandler(this.adjustSettingsToolStripMenuItem_Click);
 			// 
 			// writeToRadioToolStripMenuItem
 			// 
 			this.writeToRadioToolStripMenuItem.Name = "writeToRadioToolStripMenuItem";
-			this.writeToRadioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.writeToRadioToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
 			this.writeToRadioToolStripMenuItem.Text = "Write to radio";
 			// 
 			// aboutToolStripMenuItem
@@ -315,6 +317,13 @@ namespace GD77_FlashManager
 			this.creditsToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
 			this.creditsToolStripMenuItem.Text = "Credits";
 			this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
+			// 
+			// mergeToolStripMenuItem
+			// 
+			this.mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
+			this.mergeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.mergeToolStripMenuItem.Text = "Merge";
+			this.mergeToolStripMenuItem.Click += new System.EventHandler(this.mergeToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -379,6 +388,7 @@ namespace GD77_FlashManager
 		private ToolStripMenuItem readFlashToolStripMenuItem;
 		private ToolStripMenuItem writeFlashToolStripMenuItem;
 		private ToolStripSeparator toolStripSeparator2;
+		private ToolStripMenuItem mergeToolStripMenuItem;
 
 	}
 }

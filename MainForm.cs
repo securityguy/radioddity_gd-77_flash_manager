@@ -143,7 +143,12 @@ namespace GD77_FlashManager
 			{
 				try
 				{
-					MainForm.CommsBuffer = File.ReadAllBytes(openFileDialog1.FileName);
+					byte []tmp = File.ReadAllBytes(openFileDialog1.FileName);
+					if (tmp.Length != MainForm.CommsBuffer.Length)
+					{
+						MessageBox.Show("File is smaller than the size of the flash memory.\nOnly the fisrt "+ tmp.Length + " bytes have been updated", "Warning");
+					}
+					tmp.CopyTo(MainForm.CommsBuffer, 0);
 					MainForm.FileName = openFileDialog1.FileName;
 					MainForm.ActiveForm.Text = AppName + " - Current File: " + FileName;
 					hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
@@ -264,6 +269,45 @@ namespace GD77_FlashManager
 			}
 		}
 
+		private void mergeFile()
+		{
+			byte[] tmp;
+			OpenFileDialog openFileDialog1 = new OpenFileDialog();
+			openFileDialog1.Filter = "binary files (*.bin)|*.bin|All files (*.*)|*.*";
+			openFileDialog1.RestoreDirectory = true;
+
+			if (openFileDialog1.ShowDialog() == DialogResult.OK)
+			{
+				try
+				{
+					tmp = File.ReadAllBytes(openFileDialog1.FileName);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+					return;
+				}
+				MainForm.FileName = openFileDialog1.FileName;
+				MainForm.ActiveForm.Text = AppName + " - Current File: " + FileName;
+				MergeFileForm mff = new MergeFileForm();
+
+				if (DialogResult.OK == mff.ShowDialog())
+				{
+					try
+					{
+						tmp.CopyTo(MainForm.CommsBuffer, int.Parse(mff.MergeAddress, System.Globalization.NumberStyles.HexNumber));
+
+						hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
+						_hexboxHasChanged = false;
+					}
+					catch (Exception ex)
+					{
+						MessageBox.Show("Error: Data could be merged.  System error: " + ex.Message);
+					}
+				}
+			}
+		}
+
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			btnOpen.PerformClick();
@@ -315,6 +359,11 @@ namespace GD77_FlashManager
 		private void writeFlashToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			btnWrite.PerformClick();
+		}
+
+		private void mergeToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			mergeFile();
 		}
 
 	}
