@@ -31,13 +31,14 @@ namespace GD77_FlashManager
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CalibrationForm));
 			this.tabCtlBands = new System.Windows.Forms.TabControl();
 			this.tabVHF = new System.Windows.Forms.TabPage();
-			this.calibrationBandControlVHF = new CalibrationBandControl();
 			this.tabUHF = new System.Windows.Forms.TabPage();
-			this.calibrationBandControlUHF = new CalibrationBandControl();
 			this.btnWrite = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
+			this.calibrationBandControlVHF = new GD77_FlashManager.CalibrationBandControl();
+			this.calibrationBandControlUHF = new GD77_FlashManager.CalibrationBandControl();
 			this.tabCtlBands.SuspendLayout();
 			this.tabVHF.SuspendLayout();
 			this.tabUHF.SuspendLayout();
@@ -64,14 +65,6 @@ namespace GD77_FlashManager
 			this.tabVHF.Text = "VHF";
 			this.tabVHF.UseVisualStyleBackColor = true;
 			// 
-			// calibrationBandControlVHF
-			// 
-			this.calibrationBandControlVHF.Location = new System.Drawing.Point(5, 5);
-			this.calibrationBandControlVHF.Name = "calibrationBandControlVHF";
-			this.calibrationBandControlVHF.Size = new System.Drawing.Size(880, 487);
-			this.calibrationBandControlVHF.TabIndex = 0;
-			this.calibrationBandControlVHF.Type = "VHF";
-			// 
 			// tabUHF
 			// 
 			this.tabUHF.Controls.Add(this.calibrationBandControlUHF);
@@ -82,14 +75,6 @@ namespace GD77_FlashManager
 			this.tabUHF.TabIndex = 1;
 			this.tabUHF.Text = "UHF";
 			this.tabUHF.UseVisualStyleBackColor = true;
-			// 
-			// calibrationBandControlUHF
-			// 
-			this.calibrationBandControlUHF.Location = new System.Drawing.Point(5, 5);
-			this.calibrationBandControlUHF.Name = "calibrationBandControlUHF";
-			this.calibrationBandControlUHF.Size = new System.Drawing.Size(882, 487);
-			this.calibrationBandControlUHF.TabIndex = 0;
-			this.calibrationBandControlUHF.Type = "UHF";
 			// 
 			// btnWrite
 			// 
@@ -111,6 +96,22 @@ namespace GD77_FlashManager
 			this.btnCancel.UseVisualStyleBackColor = true;
 			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
+			// calibrationBandControlVHF
+			// 
+			this.calibrationBandControlVHF.Location = new System.Drawing.Point(5, 5);
+			this.calibrationBandControlVHF.Name = "calibrationBandControlVHF";
+			this.calibrationBandControlVHF.Size = new System.Drawing.Size(880, 487);
+			this.calibrationBandControlVHF.TabIndex = 0;
+			this.calibrationBandControlVHF.Type = "VHF";
+			// 
+			// calibrationBandControlUHF
+			// 
+			this.calibrationBandControlUHF.Location = new System.Drawing.Point(5, 5);
+			this.calibrationBandControlUHF.Name = "calibrationBandControlUHF";
+			this.calibrationBandControlUHF.Size = new System.Drawing.Size(882, 487);
+			this.calibrationBandControlUHF.TabIndex = 0;
+			this.calibrationBandControlUHF.Type = "UHF";
+			// 
 			// CalibrationForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,6 +120,7 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnWrite);
 			this.Controls.Add(this.tabCtlBands);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "CalibrationForm";
 			this.Text = "Calibration";
 			this.Shown += new System.EventHandler(this.onFormShown);

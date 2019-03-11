@@ -64,24 +64,20 @@ namespace GD77_FlashManager
 		{
 			get 
 			{
-				_calibrationData.DACOscRefTune				= (ushort)this.nudVhfOscRef.Value;
-				_calibrationData.MuteNormalWidebandOpen1	= (byte)this.nudSquelchWideNormOpen.Value;
-				_calibrationData.MuteNormalWidebandClose1	= (byte)this.nudSquelchWideNormClose.Value;
-				_calibrationData.MuteStrictWidebandOpen1	= (byte)this.nudSquelchWideTightOpen.Value;
-				_calibrationData.MuteStrictWidebandClose1	= (byte)this.nudSquelchWideTightClose.Value;
-				_calibrationData.MuteNormalNarrowbandOpen1	= (byte)this.nudSquelchNarrowNormOpen.Value;
-				_calibrationData.MuteNormalNarrowbandClose1 = (byte)this.nudSquelchNarrowNormClose.Value;
-				_calibrationData.MuteStrictNarrowbandOpen1	= (byte)this.nudSquelchNarrowTightOpen.Value;
-				_calibrationData.MuteStrictNarrowbandClose1 = (byte)this.nudSquelchNarrowTightClose.Value;
-				_calibrationData.ReceiveAGCGainTarget		= (byte)this.nudReceiveAGCTarget.Value;
-				_calibrationData.AnalogMicGain				= (byte)this.nudAnalogMicGain.Value;
-				_calibrationData.RSSILowerThreshold			= (byte)this.nudSMeterLow.Value;
-				_calibrationData.RSSIUpperThreshold			= (byte)this.nudSMeterHigh.Value;
-
-				_calibrationData.MuteStrictWidebandOpen2 = _calibrationData.MuteStrictWidebandOpen1;
-				_calibrationData.MuteStrictWidebandClose2 = _calibrationData.MuteStrictWidebandClose1;
-				_calibrationData.MuteStrictNarrowbandOpen2 = _calibrationData.MuteStrictNarrowbandOpen1;
-				_calibrationData.MuteStrictNarrowbandClose2 = _calibrationData.MuteStrictNarrowbandClose1;
+				_calibrationData.RxGain									= (UInt16)this.nudRxGain.Value;
+				_calibrationData.DACOscRefTune							= (ushort)this.nudVhfOscRef.Value;
+				_calibrationData.MuteNormalWidebandOpen1				= (byte)this.nudSquelchWideNormOpen.Value;
+				_calibrationData.MuteNormalWidebandClose1				= (byte)this.nudSquelchWideNormClose.Value;
+				_calibrationData.MuteStrictWidebandOpen1				= (byte)this.nudSquelchWideTightOpen.Value;
+				_calibrationData.MuteStrictWidebandClose1				= (byte)this.nudSquelchWideTightClose.Value;
+				_calibrationData.MuteNormalNarrowbandOpen1				= (byte)this.nudSquelchNarrowNormOpen.Value;
+				_calibrationData.MuteNormalNarrowbandClose1				= (byte)this.nudSquelchNarrowNormClose.Value;
+				_calibrationData.MuteStrictNarrowbandOpen1				= (byte)this.nudSquelchNarrowTightOpen.Value;
+				_calibrationData.MuteStrictNarrowbandClose1				= (byte)this.nudSquelchNarrowTightClose.Value;
+				_calibrationData.ReceiveAGCGainTarget					= (byte)this.nudReceiveAGCTarget.Value;
+				_calibrationData.AnalogMicGain							= (byte)this.nudAnalogMicGain.Value;
+				_calibrationData.RSSILowerThreshold						= (byte)this.nudSMeterLow.Value;
+				_calibrationData.RSSIUpperThreshold						= (byte)this.nudSMeterHigh.Value;
 
 				_calibrationData.AnalogTxDeviationDTMF					= (byte)this.nudAnalogTxDeviationDTMF.Value;
 				_calibrationData.AnalogTxDeviation1750Toneburst			= (byte)this.nudAnalogTxDeviation1750Tone.Value;
@@ -89,23 +85,19 @@ namespace GD77_FlashManager
 				_calibrationData.AnalogTxDeviationCTCSSNarrowband		= (byte)this.nudAnalogTxDeviationCTCSSNarrowband.Value;
 				_calibrationData.AnalogTxDeviationDCSWideband			= (byte)this.nudlAnalogTxDeviationDCSWideband.Value;
 				_calibrationData.AnalogTxDeviationDCSNarrowband			= (byte)this.nudAnalogTxDeviationDCSNarrowband.Value;
-				//_calibrationData.DigitalTxGainWideband_NOTCONFIRMED		= (UInt16)this.nudDigitalTxGainWideband.Value;
-				//_calibrationData.DigitalTxGainNarrowband_NOTCONFIRMED	= (UInt16)this.nudDigitalTxGainNarrowband.Value;
-				_calibrationData.DigitalRxGainWideband_NOTCONFIRMED		= (UInt16)this.nudDigitalRxGainWideband.Value;
-				_calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED	= (UInt16)this.nudDigitalRxGainNarrowband.Value;
 
-				_calibrationData.AnalogTxOverallDeviationWideband = (UInt16)this.nudAnalogTxGainWideband.Value;
-				_calibrationData.AnalogTxOverallDeviationNarrband = (UInt16)this.nudAnalogTxGainNarrowband.Value;
-				_calibrationData.AnalogRxAudioGainWideband = (byte)this.nudAnalogRxGainWideband.Value;
-				_calibrationData.AnalogRxAudioGainNarrowband = (byte)this.nudAnalogRxGainNarrowband.Value;
+				_calibrationData.AnalogTxOverallDeviationWideband		= (UInt16)this.nudAnalogTxGainWideband.Value;
+				_calibrationData.AnalogTxOverallDeviationNarrband		= (UInt16)this.nudAnalogTxGainNarrowband.Value;
+				_calibrationData.AnalogRxAudioGainWideband				= (byte)this.nudAnalogRxGainWideband.Value;
+				_calibrationData.AnalogRxAudioGainNarrowband			= (byte)this.nudAnalogRxGainNarrowband.Value;
 
 
 				// Power
 				int numItems = calibrationPowerControlLow.Rows * calibrationPowerControlLow.Cols;
 				for (int i = 0; i < numItems; i++)
 				{
-					_calibrationData.PowerSettings[i].lowPower  = (byte)calibrationPowerControlLow.Values[i];
-					_calibrationData.PowerSettings[i].highPower = (byte)calibrationPowerControlHigh.Values[i];
+					_calibrationData.PowerSettings[i].lowPower			= (byte)calibrationPowerControlLow.Values[i];
+					_calibrationData.PowerSettings[i].highPower			= (byte)calibrationPowerControlHigh.Values[i];
 				}
 
 
@@ -122,19 +114,21 @@ namespace GD77_FlashManager
 			{ 
 				_calibrationData = value;
 
-				this.nudVhfOscRef.Value					= _calibrationData.DACOscRefTune;
-				this.nudSquelchWideNormOpen.Value		= _calibrationData.MuteNormalWidebandOpen1;
-				this.nudSquelchWideNormClose.Value		= _calibrationData.MuteNormalWidebandClose1;
-				this.nudSquelchWideTightOpen.Value		= _calibrationData.MuteStrictWidebandOpen1;
-				this.nudSquelchWideTightClose.Value		= _calibrationData.MuteStrictWidebandClose1;
-				this.nudSquelchNarrowNormOpen.Value		= _calibrationData.MuteNormalNarrowbandOpen1;
-				this.nudSquelchNarrowNormClose.Value	= _calibrationData.MuteNormalNarrowbandClose1;
-				this.nudSquelchNarrowTightOpen.Value	= _calibrationData.MuteStrictNarrowbandOpen1;
-				this.nudSquelchNarrowTightClose.Value	= _calibrationData.MuteStrictNarrowbandClose1;
-				this.nudReceiveAGCTarget.Value			= _calibrationData.ReceiveAGCGainTarget;
-				this.nudAnalogMicGain.Value				= _calibrationData.AnalogMicGain;
-				this.nudSMeterLow.Value					= _calibrationData.RSSILowerThreshold;
-				this.nudSMeterHigh.Value				= _calibrationData.RSSIUpperThreshold;
+				this.nudRxGain.Value							= _calibrationData.RxGain;
+
+				this.nudVhfOscRef.Value							= _calibrationData.DACOscRefTune;
+				this.nudSquelchWideNormOpen.Value				= _calibrationData.MuteNormalWidebandOpen1;
+				this.nudSquelchWideNormClose.Value				= _calibrationData.MuteNormalWidebandClose1;
+				this.nudSquelchWideTightOpen.Value				= _calibrationData.MuteStrictWidebandOpen1;
+				this.nudSquelchWideTightClose.Value				= _calibrationData.MuteStrictWidebandClose1;
+				this.nudSquelchNarrowNormOpen.Value				= _calibrationData.MuteNormalNarrowbandOpen1;
+				this.nudSquelchNarrowNormClose.Value			= _calibrationData.MuteNormalNarrowbandClose1;
+				this.nudSquelchNarrowTightOpen.Value			= _calibrationData.MuteStrictNarrowbandOpen1;
+				this.nudSquelchNarrowTightClose.Value			= _calibrationData.MuteStrictNarrowbandClose1;
+				this.nudReceiveAGCTarget.Value					= _calibrationData.ReceiveAGCGainTarget;
+				this.nudAnalogMicGain.Value						= _calibrationData.AnalogMicGain;
+				this.nudSMeterLow.Value							= _calibrationData.RSSILowerThreshold;
+				this.nudSMeterHigh.Value						= _calibrationData.RSSIUpperThreshold;
 
 				this.nudAnalogTxDeviationDTMF.Value				= _calibrationData.AnalogTxDeviationDTMF;
 				this.nudAnalogTxDeviation1750Tone.Value			= _calibrationData.AnalogTxDeviation1750Toneburst;
@@ -142,10 +136,6 @@ namespace GD77_FlashManager
 				this.nudAnalogTxDeviationCTCSSNarrowband.Value	= _calibrationData.AnalogTxDeviationCTCSSNarrowband;
 				this.nudlAnalogTxDeviationDCSWideband.Value		= _calibrationData.AnalogTxDeviationDCSWideband;
 				this.nudAnalogTxDeviationDCSNarrowband.Value	= _calibrationData.AnalogTxDeviationDCSNarrowband;
-				//this.nudDigitalTxGainWideband.Value				= _calibrationData.DigitalTxGainWideband_NOTCONFIRMED;
-				//this.nudDigitalTxGainNarrowband.Value			= _calibrationData.DigitalTxGainNarrowband_NOTCONFIRMED;
-				this.nudDigitalRxGainWideband.Value				= _calibrationData.DigitalRxGainWideband_NOTCONFIRMED;
-				this.nudDigitalRxGainNarrowband.Value			= _calibrationData.DigitalRxGainNarrowband_NOTCONFIRMED;
 
 				this.nudAnalogTxGainWideband.Value				= _calibrationData.AnalogTxOverallDeviationWideband;
 				this.nudAnalogTxGainNarrowband.Value			= _calibrationData.AnalogTxOverallDeviationNarrband;
@@ -158,8 +148,8 @@ namespace GD77_FlashManager
 				int[] highPower = new int[numItems];
 				for (int i = 0; i < numItems; i++)
 				{
-					lowPower[i] = _calibrationData.PowerSettings[i].lowPower;
-					highPower[i] = _calibrationData.PowerSettings[i].highPower;
+					lowPower[i]									= _calibrationData.PowerSettings[i].lowPower;
+					highPower[i]								= _calibrationData.PowerSettings[i].highPower;
 				}
 				calibrationPowerControlLow.Values = lowPower;
 				calibrationPowerControlHigh.Values = highPower;

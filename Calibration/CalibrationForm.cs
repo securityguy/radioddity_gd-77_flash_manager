@@ -17,18 +17,19 @@ namespace GD77_FlashManager
 	{
 		//private CalibrationData _vhfData;
 		//private CalibrationData _uhfData;
-
-		public CalibrationForm() 
+		private int _offsetAddress = 0x8F000;
+		public CalibrationForm(int offsetAddress = 0x8F000) 
 		{
+			_offsetAddress = offsetAddress;
 			InitializeComponent();
 			// Need to setup the VHF and UHF data storage class first, as its used when initialising the components
 			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
 			byte[] array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.CommsBuffer, 0x8F000, array, 0, calibrationDataSize);
+			Array.Copy(MainForm.CommsBuffer, _offsetAddress, array, 0, calibrationDataSize);
 			this.calibrationBandControlUHF.data  = (CalibrationData)ByteToData(array);
 
 			array = new byte[calibrationDataSize];
-			Array.Copy(MainForm.CommsBuffer, 0x8F070, array, 0, calibrationDataSize);
+			Array.Copy(MainForm.CommsBuffer, _offsetAddress+ 0x70, array, 0, calibrationDataSize);
 			this.calibrationBandControlVHF.data  = (CalibrationData)ByteToData(array);
 		}
 
@@ -42,10 +43,10 @@ namespace GD77_FlashManager
 			int calibrationDataSize = Marshal.SizeOf(typeof(CalibrationData));
 
 			byte[] array = DataToByte(this.calibrationBandControlUHF.data);
-			Array.Copy(array, 0, MainForm.CommsBuffer, 0x8F000, calibrationDataSize);
+			Array.Copy(array, 0, MainForm.CommsBuffer, _offsetAddress, calibrationDataSize);
 
 			array = DataToByte(this.calibrationBandControlVHF.data);
-			Array.Copy(array, 0, MainForm.CommsBuffer, 0x8F070, calibrationDataSize);
+			Array.Copy(array, 0, MainForm.CommsBuffer, _offsetAddress + 0x70, calibrationDataSize);
 			this.DialogResult = DialogResult.OK;
 			Close();
 		}

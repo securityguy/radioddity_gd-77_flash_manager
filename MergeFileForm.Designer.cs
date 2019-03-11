@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MergeFileForm));
 			this.btnMerge = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.lblAddress = new System.Windows.Forms.Label();
@@ -81,6 +82,7 @@
 			this.Controls.Add(this.lblAddress);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnMerge);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MergeFileForm";
 			this.Text = "Set merge address";
 			this.ResumeLayout(false);

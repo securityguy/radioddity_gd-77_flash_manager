@@ -31,6 +31,7 @@ namespace GD77_FlashManager
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.hexBox = new Be.Windows.Forms.HexBox();
 			this.btnOpen = new System.Windows.Forms.Button();
 			this.btnSave = new System.Windows.Forms.Button();
@@ -48,6 +49,7 @@ namespace GD77_FlashManager
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.readFlashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.writeFlashToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +62,6 @@ namespace GD77_FlashManager
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.mergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -215,52 +216,59 @@ namespace GD77_FlashManager
 			// newToolStripMenuItem
 			// 
 			this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.newToolStripMenuItem.Text = "New";
 			this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+			// 
+			// mergeToolStripMenuItem
+			// 
+			this.mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
+			this.mergeToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+			this.mergeToolStripMenuItem.Text = "Merge";
+			this.mergeToolStripMenuItem.Click += new System.EventHandler(this.mergeToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
 			// 
 			// readFlashToolStripMenuItem
 			// 
 			this.readFlashToolStripMenuItem.Name = "readFlashToolStripMenuItem";
-			this.readFlashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.readFlashToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.readFlashToolStripMenuItem.Text = "Read Flash";
 			this.readFlashToolStripMenuItem.Click += new System.EventHandler(this.readFlashToolStripMenuItem_Click);
 			// 
 			// writeFlashToolStripMenuItem
 			// 
 			this.writeFlashToolStripMenuItem.Name = "writeFlashToolStripMenuItem";
-			this.writeFlashToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.writeFlashToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.writeFlashToolStripMenuItem.Text = "Write Flash";
 			this.writeFlashToolStripMenuItem.Click += new System.EventHandler(this.writeFlashToolStripMenuItem_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
 			// 
@@ -318,13 +326,6 @@ namespace GD77_FlashManager
 			this.creditsToolStripMenuItem.Text = "Credits";
 			this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
 			// 
-			// mergeToolStripMenuItem
-			// 
-			this.mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
-			this.mergeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.mergeToolStripMenuItem.Text = "Merge";
-			this.mergeToolStripMenuItem.Click += new System.EventHandler(this.mergeToolStripMenuItem_Click);
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,6 +344,7 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.btnOpen);
 			this.Controls.Add(this.hexBox);
 			this.Controls.Add(this.menuStrip1);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "MainForm";

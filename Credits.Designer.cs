@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Credits));
 			this.btnCancelCredits = new System.Windows.Forms.Button();
 			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
 			this.lblInfoText = new System.Windows.Forms.Label();
@@ -53,7 +54,6 @@
 			this.richTextBox1.Text = "This non-commercial project is the result of a global cooperative effort of the f" +
     "ollowing ham radio amateurs:\n\nRoger Clark, VK3KYY / G4KYF\nJason Reilly, VK7ZJA\nC" +
     "olin Durbridge,G4EML";
-
 			// 
 			// lblInfoText
 			// 
@@ -64,7 +64,6 @@
 			this.lblInfoText.Size = new System.Drawing.Size(215, 19);
 			this.lblInfoText.TabIndex = 2;
 			this.lblInfoText.Text = "Credits and special thanks!";
-
 			// 
 			// Credits
 			// 
@@ -74,6 +73,7 @@
 			this.Controls.Add(this.lblInfoText);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.btnCancelCredits);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Credits";
 			this.Text = "Info";
 			this.ResumeLayout(false);

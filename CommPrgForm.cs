@@ -39,6 +39,7 @@ namespace GD77_FlashManager
 
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CommPrgForm));
 			this.lblPrompt = new System.Windows.Forms.Label();
 			this.prgComm = new System.Windows.Forms.ProgressBar();
 			this.btnCancel = new System.Windows.Forms.Button();
@@ -93,6 +94,7 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.prgComm);
 			this.Controls.Add(this.lblPrompt);
 			this.Font = new System.Drawing.Font("Arial", 10F);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "CommPrgForm";
 			this.ShowInTaskbar = false;

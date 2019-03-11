@@ -177,7 +177,13 @@ namespace GD77_FlashManager
 		}
 		private void btnCalibration_Click(object sender, EventArgs e)
 		{
-			CalibrationForm cf = new CalibrationForm();
+			int offsetAddress = 0x8F000;
+			if (Control.ModifierKeys == Keys.Shift)
+			{
+				offsetAddress = 0x50100;
+			}
+			CalibrationForm cf = new CalibrationForm(offsetAddress);
+
 			cf.ShowDialog();
 			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 			hexBox.ScrollByteToTop(0x8F000);

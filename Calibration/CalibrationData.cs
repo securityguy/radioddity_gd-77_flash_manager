@@ -7,61 +7,50 @@ namespace GD77_FlashManager
 	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public class CalibrationData
 	{
-		public UInt16 DigitalRxGainNarrowband_NOTCONFIRMED;// NOT CONFIRMED
-		public UInt16 DigitalTxGainNarrowband_NOTCONFIRMED;// NOT CONFIRMED
-		public UInt16 DigitalRxGainWideband_NOTCONFIRMED;// NOT CONFIRMED
-		public UInt16 DigitalTxGainWideband_NOTCONFIRMED;// NOT CONFIRMED
+		public UInt16 RxGain; // offset 0x00
+		public UInt16 TxGainUnconfirmed;// offset 0x02
+
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+		public byte[] UnknownBlock1;// offset 0x04
 		
-		/* Superseded by the variables above
-		// Changing any of them reduced the Tx power to virtually nothing
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock1;// Uknown. Changing any of these values causes Tx power to drop to virtuially zero
-		*/
 
-		public UInt16 DACOscRefTune;// 	DAC word for frequency reference oscillator
+		public UInt16 DACOscRefTune;// offset 0x08 	DAC word for frequency reference oscillator
 
-		public byte UnknownBlock2; // Unkown byte E9 on UHF EE on VHF
+		public byte UnknownBlock2; // offset 0x0A   Unkown byte E9 on UHF EE on VHF
 
 		/* Power settings
 		 * UHF 400 to 475 in 5Mhz stps (16 steps)
 		 * VHF 136Mhz, then 140MHz -  165Mhz in steps of 5Mhz, then 172Mhz  (8 steps - upper 8 array entries contain 0xff )
 		 */
 		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)] 
-		public PowerSettingData[] PowerSettings;
+		public PowerSettingData[] PowerSettings;// Offset 0x0B (Note. Not all used on VHF)
 
 
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock3;// Unkown
-
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UknownBlock9;// Note 
-
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-		public byte[] UnknownBlock4;// Seems to contain 0x00 on both VHF and UHF. Potentially unused
-
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-		public byte[] UnknownBlock5;// Different values on VHF and UHF byt all in the range 0x12 - 0x1D
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 27)]
+		public byte[] UnknownBlock3;// Offset 0x2B
 
 
 		//  Analog Squelch controls
-		public byte MuteStrictWidebandClose1;
-		public byte MuteStrictWidebandOpen1;
-		public byte MuteStrictWidebandClose2;
-		public byte MuteStrictWidebandOpen2;
+		public byte SquelchSensitivity;// offset 0x46
 
-		public byte MuteNormalWidebandClose1;
-		public byte MuteNormalWidebandOpen1;
+		public byte MuteStrictWidebandClose1;// offset 0x46
+		public byte MuteStrictWidebandOpen1;// offset 0x48
 
-		public byte MuteStrictNarrowbandClose1;
-		public byte MuteStrictNarrowbandOpen1;
-		public byte MuteStrictNarrowbandClose2;
-		public byte MuteStrictNarrowbandOpen2;
+		public UInt16 Unknown4;// offset 0x49
 
-		public byte MuteNormalNarrowbandClose1;
-		public byte MuteNormalNarrowbandOpen1;
+		public byte MuteNormalWidebandClose1;// offset 0x4B
+		public byte MuteNormalWidebandOpen1;// offset 0x4C
 
-		public byte RSSILowerThreshold;
-		public byte RSSIUpperThreshold;
+		public byte MuteStrictNarrowbandClose1;// offset 0x4D
+		public byte MuteStrictNarrowbandOpen1;// offset 0x4E
+
+		public UInt16 Uknown5;//Offset 0x4F - 0x50
+
+		public byte MuteNormalNarrowbandClose1;// Offset 0x51
+		public byte MuteNormalNarrowbandOpen1;// Offset 0x52
+
+		public byte RSSILowerThreshold;// Offset 0x53
+		public byte RSSIUpperThreshold;// Offset 0x54
 
 		/*
 		 * VHF 136Mhz , 140Mhz - 165Mhz (in 5Mhz steps), 172Mhz 
@@ -105,10 +94,9 @@ namespace GD77_FlashManager
 			{
 				PowerSettings[i] = new PowerSettingData();
 			}
-			this.UnknownBlock3 = new byte[8];
-			this.UknownBlock9 = new byte[8];
-			this.UnknownBlock4 = new byte[4];
-			this.UnknownBlock5 = new byte[8];
+			this.UnknownBlock1 = new byte[4];
+			this.UnknownBlock3 = new byte[27];
+
 			this.TXIandQ = new byte[8];
 			this.UnknownBlock7 = new byte[2];
 			this.UnknownBlock8 = new byte[2];

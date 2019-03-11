@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FindForm));
 			this.btnFind = new System.Windows.Forms.Button();
 			this.btnCancel = new System.Windows.Forms.Button();
 			this.txtSearchFor = new System.Windows.Forms.TextBox();
@@ -82,7 +83,6 @@
 			this.cmbDataType.Name = "cmbDataType";
 			this.cmbDataType.Size = new System.Drawing.Size(202, 21);
 			this.cmbDataType.TabIndex = 3;
-			this.cmbDataType.SelectedIndex = 0;
 			// 
 			// lblDataType
 			// 
@@ -104,6 +104,7 @@
 			this.Controls.Add(this.txtSearchFor);
 			this.Controls.Add(this.btnCancel);
 			this.Controls.Add(this.btnFind);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FindForm";
 			this.Text = "Find";
 			this.ResumeLayout(false);
