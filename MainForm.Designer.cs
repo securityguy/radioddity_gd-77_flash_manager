@@ -62,6 +62,7 @@ namespace GD77_FlashManager
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.checkBoxReadInternalFlash = new System.Windows.Forms.CheckBox();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -325,12 +326,25 @@ namespace GD77_FlashManager
 			this.creditsToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
 			this.creditsToolStripMenuItem.Text = "Credits";
 			this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
+
+			// 
+			// checkBoxReadInternalFlash
+			// 
+			this.checkBoxReadInternalFlash.AutoSize = true;
+			this.checkBoxReadInternalFlash.Location = new System.Drawing.Point(21, 264);
+			this.checkBoxReadInternalFlash.Name = "checkBoxReadInternalFlash";
+			this.checkBoxReadInternalFlash.Size = new System.Drawing.Size(88, 30);
+			this.checkBoxReadInternalFlash.TabIndex = 7;
+			this.checkBoxReadInternalFlash.Text = "Read\r\ninternal Flash";
+			this.checkBoxReadInternalFlash.UseVisualStyleBackColor = true;
+
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(797, 633);
+			this.Controls.Add(this.checkBoxReadInternalFlash);
 			this.Controls.Add(this.txtLen);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.txtStartAddr);
@@ -391,6 +405,7 @@ namespace GD77_FlashManager
 		private ToolStripMenuItem writeFlashToolStripMenuItem;
 		private ToolStripSeparator toolStripSeparator2;
 		private ToolStripMenuItem mergeToolStripMenuItem;
+		private CheckBox checkBoxReadInternalFlash;
 
 	}
 }

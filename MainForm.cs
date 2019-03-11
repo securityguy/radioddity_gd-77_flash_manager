@@ -18,6 +18,7 @@ namespace GD77_FlashManager
 		public static byte [] CommsBuffer = new byte[1024 * 1024];
 		public static int startAddress;
 		public static int transferLength;
+		public static bool readInternalFlash;
 		private FixedByteProvider _dbp;
 		private bool _hexboxHasChanged = false;
 		FindOptions	_findOptions; 
@@ -47,6 +48,7 @@ namespace GD77_FlashManager
 			CommPrgForm commPrgForm = new CommPrgForm();
 			commPrgForm.StartPosition = FormStartPosition.CenterParent;
 			commPrgForm.IsRead = true;
+			MainForm.readInternalFlash = checkBoxReadInternalFlash.Checked;
 			MainForm.startAddress = int.Parse(txtStartAddr.Text, System.Globalization.NumberStyles.HexNumber);
 			if (MainForm.startAddress % 32 != 0)
 			{

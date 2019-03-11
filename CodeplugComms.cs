@@ -29,6 +29,7 @@ internal class CodeplugComms
 	private static readonly byte[] CMD_ACK=     new byte[1] {65};
     private static readonly byte[] CMD_PRG =    new byte[7] { 2, (byte)'P', (byte)'R', (byte)'O', (byte)'G', (byte)'R', (byte)'A' };// 80,82,79,71,82,65}
 	private static readonly byte[] CMD_PRG2 =   new byte[2] {77,2};
+	private static readonly byte[] CMD_PRG255 = new byte[2] { 77, 255 };
 
 
 	public int[] START_ADDR;
@@ -82,11 +83,21 @@ internal class CodeplugComms
 		}
 	}
 
+
+
 	public void startCodeplugReadOrWriteInNewThread()
 	{
 		if (this.setIsRead())
 		{
-			this.thread = new Thread(this.readData);
+			if (!MainForm.readInternalFlash)
+			{
+				this.thread = new Thread(this.readData);
+			}
+			else
+			{
+				MessageBox.Show("Reading from the internal flash will only work if the properly patched flash readout firmware has already been uploaded!");
+				this.thread = new Thread(this.readDataFlash);
+			}
 		}
 		else
 		{
@@ -100,6 +111,144 @@ internal class CodeplugComms
 		string hex = BitConverter.ToString(ba);
 		return hex.Replace("-", "");
 	}
+
+	public void readDataFlash()
+	{
+		byte[] usbBuf = new byte[160];// buffer for individual transfers
+		int blockLength = 16;
+		SpecifiedDevice specifiedDevice = null;
+		try
+		{
+			specifiedDevice = SpecifiedDevice.FindSpecifiedDevice(HID_VID, HID_PID);//0x152A HID_PID
+			if (specifiedDevice == null)
+			{
+				if (this.OnFirmwareUpdateProgress != null)
+				{
+					this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "Device not found", true, true));
+				}
+			}
+			else
+			{
+				int numBlocks = MainForm.transferLength / blockLength;
+				int startBlock = MainForm.startAddress / blockLength;
+				byte[] flashreadcommand = new byte[5] { 0x00, 0x00, 0x00, 0x00, 0x00 }; // CMD (1=read, otherwise stop) + Address as LSB to MSB
+				int block_counter = 0;
+				for (int block = startBlock; block < (startBlock + numBlocks); block++)
+				{
+					if (block_counter == 0)
+					{
+						Array.Clear(usbBuf, 0, usbBuf.Length);
+						specifiedDevice.SendData(CodeplugComms.CMD_PRG);// Send PROGRA command to initiate comms
+						specifiedDevice.ReceiveData(usbBuf);// Wait for response
+						if (usbBuf[0] != CodeplugComms.CMD_ACK[0])
+						{
+							if (this.OnFirmwareUpdateProgress != null)
+							{
+								this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "No ACK1", true, true));
+							}
+							break;// Exit if not ack
+						}
+
+						Array.Clear(usbBuf, 0, usbBuf.Length);
+						specifiedDevice.SendData(CodeplugComms.CMD_PRG255);// Send command to initiate flash readout
+						specifiedDevice.ReceiveData(usbBuf);// Wait for response
+						if (usbBuf[0] != CodeplugComms.CMD_ACK[0])
+						{
+							if (this.OnFirmwareUpdateProgress != null)
+							{
+								this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "No ACK2", true, true));
+							}
+							break;// Exit if not ack
+						}
+					}
+
+					ulong adr = (ulong)(block * 16);
+					flashreadcommand[0] = (byte)1;                                          // READ
+					flashreadcommand[1] = (byte)((adr & 0x000000ff) >> 0);
+					flashreadcommand[2] = (byte)((adr & 0x0000ff00) >> 8);
+					flashreadcommand[3] = (byte)((adr & 0x00ff0000) >> 16);
+					flashreadcommand[4] = (byte)((adr & 0xff000000) >> 24);
+					specifiedDevice.SendData(flashreadcommand);
+					Array.Clear(usbBuf, 0, usbBuf.Length);
+					specifiedDevice.ReceiveData(usbBuf);
+
+					Buffer.BlockCopy(usbBuf, 0, MainForm.CommsBuffer, (block * blockLength), blockLength);// Extract the 16 bytes from the response
+
+					if (this.OnFirmwareUpdateProgress != null)
+					{
+						this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs((float)(block + 1 - startBlock) * 100 / (float)numBlocks, "", false, false));
+					}
+
+					block_counter++;
+					if (block_counter >= 256)
+					{
+						block_counter = 0;
+
+						flashreadcommand[0] = (byte)2;                                      // STOP
+						flashreadcommand[1] = (byte)0;
+						flashreadcommand[2] = (byte)0;
+						flashreadcommand[3] = (byte)0;
+						flashreadcommand[4] = (byte)0;
+						specifiedDevice.SendData(flashreadcommand);
+						specifiedDevice.ReceiveData(usbBuf);// Wait for response
+						if (usbBuf[0] != CodeplugComms.CMD_ACK[0])
+						{
+							if (this.OnFirmwareUpdateProgress != null)
+							{
+								this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "No STOPACK1", true, true));
+							}
+							break;// Exit if not ack
+						}
+					}
+
+					if (getCancelComm())
+					{
+						break;
+					}
+				}
+
+				if (block_counter != 0)
+				{
+					flashreadcommand[0] = (byte)2;                                      // FINAL STOP
+					flashreadcommand[1] = (byte)0;
+					flashreadcommand[2] = (byte)0;
+					flashreadcommand[3] = (byte)0;
+					flashreadcommand[4] = (byte)0;
+					specifiedDevice.SendData(flashreadcommand);
+					specifiedDevice.ReceiveData(usbBuf);// Wait for response
+					if (usbBuf[0] != CodeplugComms.CMD_ACK[0])
+					{
+						if (this.OnFirmwareUpdateProgress != null)
+						{
+							this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "No STOPACK2", true, true));
+						}
+					}
+				}
+			}
+		}
+		catch (TimeoutException ex)
+		{
+			Console.WriteLine(ex.Message);
+			if (this.OnFirmwareUpdateProgress != null)
+			{
+				this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(0f, "Comms error", true, true));
+			}
+		}
+		finally
+		{
+			if (specifiedDevice != null)
+			{
+				specifiedDevice.Dispose();
+			}
+		}
+
+		if (this.OnFirmwareUpdateProgress != null)
+		{
+			this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs(100f, "", false, true));
+		}
+	}
+
+
 
 	// Test function added by Roger Clark to read all 1Mb from the external Flash chip on the GD-77.
 	// It outputs the data dummp to the file c:\\gd-77_datadump.bin
