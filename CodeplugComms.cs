@@ -333,7 +333,7 @@ internal class CodeplugComms
 
 								addr16 = (block * blockLength) & 0xffff;
 								// Send request for dcata
-								byte[] data2 = new byte[4] { 82, (byte)(addr16 >> 8), (byte)addr16, (byte)blockLength };
+								byte[] data2 = new byte[4] { (byte)'R', (byte)(addr16 >> 8), (byte)addr16, (byte)blockLength };
 								
 								Array.Clear(usbBuf, 0, usbBuf.Length);
 								specifiedDevice.SendData(data2, 0, 4);
@@ -463,7 +463,7 @@ internal class CodeplugComms
 
 								addr16 = (block * blockLength) & 0xffff;
 								// Send request for dcata
-								byte[] data2 = new byte[4+32] { 87, (byte)(addr16 >> 8), (byte)addr16, (byte)blockLength,
+								byte[] data2 = new byte[4+32] { (byte)'W', (byte)(addr16 >> 8), (byte)addr16, (byte)blockLength,
 								0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 								Array.Clear(usbBuf, 0, usbBuf.Length);
