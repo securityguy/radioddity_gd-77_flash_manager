@@ -15,7 +15,7 @@ namespace GD77_FlashManager
 {
 	public partial class MainForm : Form
 	{
-		public static byte [] CommsBuffer = new byte[1024 * 1024];
+		public static byte [] CommsBuffer = new byte[1024 * 1024 * 8];
 		public static int startAddress;
 		public static int transferLength;
 		public static bool readInternalFlash;
