@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.ComponentModel.Design;
 using System.IO;
 using Be.Windows.Forms;
+using System.Reflection;
 
 namespace GD77_FlashManager
 {
@@ -21,13 +22,14 @@ namespace GD77_FlashManager
 		public static bool readInternalFlash;
 		private FixedByteProvider _dbp;
 		private bool _hexboxHasChanged = false;
-		FindOptions	_findOptions; 
-        public static String AppName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+		FindOptions	_findOptions;
+		public static String PRODUCT_NAME = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
         public static String FileName = "";
 		
 		public MainForm()
 		{
 			InitializeComponent();
+			this.Text = AppName;
 			// Hide calibration from normal users
 			this.btnReadCalibration.Visible = false;
 			this.btnWriteCalibration.Visible = false;
@@ -373,6 +375,17 @@ namespace GD77_FlashManager
 		private void mergeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			mergeFile();
+		}
+
+		private string AppName
+		{
+			get
+			{
+				Version ver = AssemblyName.GetAssemblyName(System.Reflection.Assembly.GetExecutingAssembly().Location).Version;//.ToString();
+				DateTime dt = new DateTime(2000, 1, 1, 0, 0, 0).AddDays(ver.Build).AddSeconds(ver.Revision * 2);
+
+				return MainForm.PRODUCT_NAME + " [Build date " + dt.ToString("yyyyMMdd") + "]";
+			}
 		}
 
 	}
