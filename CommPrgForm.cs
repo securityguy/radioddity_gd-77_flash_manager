@@ -188,6 +188,7 @@ namespace GD77_FlashManager
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
+			this.DialogResult = DialogResult.Cancel;
 			this.Close();
 		}
 

@@ -63,6 +63,7 @@ namespace GD77_FlashManager
 			this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkBoxReadInternalFlash = new System.Windows.Forms.CheckBox();
+			this.btnClearMemory = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -71,7 +72,7 @@ namespace GD77_FlashManager
 			this.hexBox.ColumnInfoVisible = true;
 			this.hexBox.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.hexBox.LineInfoVisible = true;
-			this.hexBox.Location = new System.Drawing.Point(110, 22);
+			this.hexBox.Location = new System.Drawing.Point(137, 22);
 			this.hexBox.Name = "hexBox";
 			this.hexBox.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
 			this.hexBox.Size = new System.Drawing.Size(669, 599);
@@ -115,7 +116,7 @@ namespace GD77_FlashManager
 			this.txtStartAddr.Name = "txtStartAddr";
 			this.txtStartAddr.Size = new System.Drawing.Size(75, 20);
 			this.txtStartAddr.TabIndex = 3;
-			this.txtStartAddr.Text = "80000";
+			this.txtStartAddr.Text = "0";
 			this.txtStartAddr.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// txtLen
@@ -124,7 +125,7 @@ namespace GD77_FlashManager
 			this.txtLen.Name = "txtLen";
 			this.txtLen.Size = new System.Drawing.Size(75, 20);
 			this.txtLen.TabIndex = 5;
-			this.txtLen.Text = "10000";
+			this.txtLen.Text = "100000";
 			this.txtLen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// label2
@@ -194,7 +195,7 @@ namespace GD77_FlashManager
             this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(797, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(846, 24);
 			this.menuStrip1.TabIndex = 6;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -326,24 +327,32 @@ namespace GD77_FlashManager
 			this.creditsToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
 			this.creditsToolStripMenuItem.Text = "Credits";
 			this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
-
 			// 
 			// checkBoxReadInternalFlash
 			// 
 			this.checkBoxReadInternalFlash.AutoSize = true;
-			this.checkBoxReadInternalFlash.Location = new System.Drawing.Point(21, 264);
+			this.checkBoxReadInternalFlash.Location = new System.Drawing.Point(21, 285);
 			this.checkBoxReadInternalFlash.Name = "checkBoxReadInternalFlash";
-			this.checkBoxReadInternalFlash.Size = new System.Drawing.Size(88, 30);
+			this.checkBoxReadInternalFlash.Size = new System.Drawing.Size(107, 17);
 			this.checkBoxReadInternalFlash.TabIndex = 7;
-			this.checkBoxReadInternalFlash.Text = "Read\r\ninternal Flash";
+			this.checkBoxReadInternalFlash.Text = "Read MCU ROM";
 			this.checkBoxReadInternalFlash.UseVisualStyleBackColor = true;
-
+			// 
+			// btnClearMemory
+			// 
+			this.btnClearMemory.Location = new System.Drawing.Point(21, 256);
+			this.btnClearMemory.Name = "btnClearMemory";
+			this.btnClearMemory.Size = new System.Drawing.Size(75, 23);
+			this.btnClearMemory.TabIndex = 0;
+			this.btnClearMemory.Text = "Clear";
+			this.btnClearMemory.UseVisualStyleBackColor = true;
+			this.btnClearMemory.Click += new System.EventHandler(this.btnClearMemory_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(797, 633);
+			this.ClientSize = new System.Drawing.Size(846, 633);
 			this.Controls.Add(this.checkBoxReadInternalFlash);
 			this.Controls.Add(this.txtLen);
 			this.Controls.Add(this.label2);
@@ -353,6 +362,7 @@ namespace GD77_FlashManager
 			this.Controls.Add(this.btnWrite);
 			this.Controls.Add(this.btnWriteCalibration);
 			this.Controls.Add(this.btnReadCalibration);
+			this.Controls.Add(this.btnClearMemory);
 			this.Controls.Add(this.btnRead);
 			this.Controls.Add(this.btnSave);
 			this.Controls.Add(this.btnOpen);
@@ -406,6 +416,7 @@ namespace GD77_FlashManager
 		private ToolStripSeparator toolStripSeparator2;
 		private ToolStripMenuItem mergeToolStripMenuItem;
 		private CheckBox checkBoxReadInternalFlash;
+		private Button btnClearMemory;
 
 	}
 }

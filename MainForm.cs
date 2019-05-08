@@ -16,7 +16,8 @@ namespace GD77_FlashManager
 {
 	public partial class MainForm : Form
 	{
-		public static byte [] CommsBuffer = new byte[1024 * 1024 * 8];
+		private const int MASTER_BUFFER_SIZE = 1024 * 1024 * 8;// 8 Mb
+		public static byte[] CommsBuffer = new byte[MASTER_BUFFER_SIZE];
 		public static int startAddress;
 		public static int transferLength;
 		public static bool readInternalFlash;
@@ -386,6 +387,12 @@ namespace GD77_FlashManager
 
 				return MainForm.PRODUCT_NAME + " [Build date " + dt.ToString("yyyyMMdd") + "]";
 			}
+		}
+
+		private void btnClearMemory_Click(object sender, EventArgs e)
+		{
+			MainForm.CommsBuffer = new byte[MASTER_BUFFER_SIZE];
+			hexBox.ByteProvider = _dbp = new FixedByteProvider(CommsBuffer);
 		}
 
 	}
