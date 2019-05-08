@@ -488,6 +488,12 @@ internal class CodeplugComms
 								{
 									this.OnFirmwareUpdateProgress(this, new FirmwareUpdateProgressEventArgs((float)(block + 1 - startBlock) * 100 / (float)numBlocks, "", false, false));
 								}
+								if (getCancelComm())
+								{
+									specifiedDevice.SendData(CodeplugComms.CMD_ENDW);
+									specifiedDevice.ReceiveData(usbBuf);
+									goto end_IL_02a2;
+								}
 							}
 							// SEND END OF WRITE
 							specifiedDevice.SendData(CodeplugComms.CMD_ENDW);
