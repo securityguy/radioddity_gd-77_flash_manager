@@ -331,11 +331,11 @@ namespace GD77_FlashManager
 			// checkBoxReadInternalFlash
 			// 
 			this.checkBoxReadInternalFlash.AutoSize = true;
-			this.checkBoxReadInternalFlash.Location = new System.Drawing.Point(21, 285);
+			this.checkBoxReadInternalFlash.Location = new System.Drawing.Point(21, 627);
 			this.checkBoxReadInternalFlash.Name = "checkBoxReadInternalFlash";
-			this.checkBoxReadInternalFlash.Size = new System.Drawing.Size(107, 17);
+			this.checkBoxReadInternalFlash.Size = new System.Drawing.Size(217, 17);
 			this.checkBoxReadInternalFlash.TabIndex = 7;
-			this.checkBoxReadInternalFlash.Text = "Read MCU ROM";
+			this.checkBoxReadInternalFlash.Text = "Read MCU ROM using DG4KU firmware";
 			this.checkBoxReadInternalFlash.UseVisualStyleBackColor = true;
 			// 
 			// btnClearMemory
@@ -352,7 +352,7 @@ namespace GD77_FlashManager
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(846, 633);
+			this.ClientSize = new System.Drawing.Size(846, 645);
 			this.Controls.Add(this.checkBoxReadInternalFlash);
 			this.Controls.Add(this.txtLen);
 			this.Controls.Add(this.label2);

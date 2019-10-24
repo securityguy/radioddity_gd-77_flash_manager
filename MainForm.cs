@@ -16,7 +16,7 @@ namespace GD77_FlashManager
 {
 	public partial class MainForm : Form
 	{
-		private const int MASTER_BUFFER_SIZE = 1024 * 1024 * 8;// 8 Mb
+		private const int MASTER_BUFFER_SIZE = 1024 * 1024;//1Mb * 8;// 8 Mb
 		public static byte[] CommsBuffer = new byte[MASTER_BUFFER_SIZE];
 		public static int startAddress;
 		public static int transferLength;
